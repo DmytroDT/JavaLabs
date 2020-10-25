@@ -19,7 +19,6 @@ public class main
 	
 	public static void main(String[] args) {
 	
-	
 	TestClass TC = new TestClass(); 	
 	
 	System.out.println("Variable int:"+TC.intVar);
