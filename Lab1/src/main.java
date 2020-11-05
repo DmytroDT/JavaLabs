@@ -3,9 +3,10 @@ import java.util.Scanner;
 
 
 
-
 public class main 
 {
+
+	
 	/**
 	 * 
 	 * @param any integer is permitted.They're just random numbers that will be displayed in console. 
@@ -18,23 +19,28 @@ public class main
 	}
 	
 	public static void main(String[] args) {
+	int Upb,Lwb,Fib;
+	Scanner Sc = new Scanner(System.in);
 	
 	TestClass TC = new TestClass(); 	
 	
 	System.out.println("Variable int:"+TC.intVar);
 	System.out.println("Variable char:"+TC.charVar);
 	
-	Scanner Sc = new Scanner(System.in);
+	
 	
 	TakeArguments(Sc.nextInt(), Sc.nextInt(), Sc.nextInt());
 
-	FibonacchiNumberline Fb = new FibonacchiNumberline();
-	Fb.InputBoarders();
-	Fb.displayNumbers();
-	Fb.DisplaySum();
-	Fb.FibonacchiSeries();
-	Fb.DisplayNumberRatio();
+	System.out.println("Input lower border of numerical series:");
+	Lwb=Sc.nextInt();
+	System.out.println("Input upper border of numerical series:");
+	Upb=Sc.nextInt();
+	System.out.println("Input Fibonacchi border of numerical series:");
+	Fib=Sc.nextInt();
 	
+	FibonacchiNumberline Fb = new FibonacchiNumberline(Lwb,Upb,Fib);
+	Fb.DisplayNumbers();
+
 	}
 
 	

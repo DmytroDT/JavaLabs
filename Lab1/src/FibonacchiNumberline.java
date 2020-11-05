@@ -1,5 +1,6 @@
-import java.util.Scanner;
+import java.util.ArrayList;
 
+import javax.naming.directory.InvalidAttributeIdentifierException;
 /**
  * 
  * @author dmytro
@@ -9,124 +10,116 @@ import java.util.Scanner;
 
 public class FibonacchiNumberline 
 {
-	private int lowerBoarder,upperBoarder, oddSum,evenSum;
-	private int border,oddCount=1,evenCount=1;
+	private int lowerBoarder,upperBoarder, oddSum,evenSum,Fibborder,oddCount=1,evenCount=1;
 	private long var1,var2,intermeiateResult; 
-	private Scanner scan = new Scanner(System.in);
+	private ArrayList<Integer> oddNumbers = new ArrayList<Integer>();
+	private ArrayList<Integer> evenNumbers = new ArrayList<Integer>();
+	private ArrayList<Long> fibNumbers = new ArrayList<Long>();
 	
-	/**
-	 * Void method that requires user to input upper & lower border of numerical series.
-	 */
-	void InputBoarders()
+	
+	public FibonacchiNumberline(int lowerBoarder, int upperBoarder,int Fibonborder)
 	{
+		this.lowerBoarder = lowerBoarder;
+		this.upperBoarder = upperBoarder;
+		this.Fibborder=Fibonborder;
 		
-		System.out.println("Input lower border of numerical series:");
-		lowerBoarder = scan.nextInt();	
-		System.out.println("Inpuit upper border of numerical series:");
-		upperBoarder = scan.nextInt();
+		SelectNumbers();
+		NumbersSum();
+		FibonacchiSeries();
 	}
-	/**
-	 * Method that displays series of integer numbers set in borders defined by InputBoarders method.
-	 */
-	void displayNumbers()
+	
+	
+	
+	
+	private void SelectNumbers()
 	{
-		for(int i = upperBoarder; i>=lowerBoarder;i--)
-		{
-			if(i %2 != 0 )
-			{
-				System.out.print("Odd number="+i+" ");
-			}
-		}
-		System.out.println("");
 		
 		for(int i= lowerBoarder; i <= upperBoarder; i++)
 		{
 			if(i%2==0)
 			{
-				System.out.print("Even number="+i+" ");
+				evenNumbers.add(i);
 
+			}
+			else 
+			{
+				oddNumbers.add(i);
 			}
 		}
 
 	}
-	/**
-	 * Method that displays a sum of even or odd numbers in series defined by border of InputBoarders method.
-	 */
-	void DisplaySum()
+	
+	
+	private	void NumbersSum()
 	{
-		for(int i = upperBoarder; i>lowerBoarder;i--)
-		{
-			if(i %2 != 0 )
-			{
-				oddSum+=i;
-			}
-		}
-		System.out.println("\nSum of all odd numbers is equal to:"+oddSum);
-		
+	
 		for(int i= lowerBoarder; i < upperBoarder; i++)
 		{
 			if(i%2==0)
 			{
 				evenSum+=i;
 			}
+			else 
+			{
+				oddSum+=i;
+			}
+		
 		}
-		System.out.println("Sum of all even numbers is equal to:"+evenSum);
 	}
 	
-	/**
-	 * Method that creates Fibonacci Series out of upper border specified by InputBoarders method. 
-	 */
-	void FibonacchiSeries()
+	private void FibonacchiSeries()
 	{
 		
+		var1=oddNumbers.get(oddNumbers.size()-1);
+		var2=evenNumbers.get(evenNumbers.size()-1);
+		fibNumbers.add(var1);
+		fibNumbers.add(var2);
 		
-	
-		System.out.println("Input length of the series:");
-		border = scan.nextInt();
 		
-		if(upperBoarder%2==0) 
-		{
-			var1=upperBoarder;
-			var2=upperBoarder-1;
-		}
-		else
-		{
-			var1=upperBoarder;
-			var2=upperBoarder-1;
-		}
-		System.out.println("Fibonacchi series number [0]= "+var1);
-		System.out.println("Fibonacchi series number [1]= "+var2);
-		
-		for (int i=1; i< border;i++)
+		for (int i=0; i< Fibborder;i++)
 		{
 			intermeiateResult=var1+var2;
 			var1=var2;
 			var2=intermeiateResult;
-			System.out.println("Fibonacchi series number ["+(i+1)+"]= "+intermeiateResult);
+		
+			fibNumbers.add(intermeiateResult);
+			
 			if(intermeiateResult%2==0) 
 			{
 				evenCount++;
 			}
 			else
 			{
-				oddCount++;
+			oddCount++;
 			}
 		}
 	}
-	/**
-	 * Method that displays % ratio of even & odd numbers in Fibonacchi series.
-	 */
-	void DisplayNumberRatio()
+	
+	
+	
+	public void DisplayNumbers()
 	{
-		if(upperBoarder==0)
-		{
-			System.out.println("Upper limit is not set.");
-		}
-		else
-		{
-			System.out.println("Even number percentage is:"+(evenCount*100/border)+"%.");
-			System.out.println("Odd number percentage is:"+(oddCount*100/border)+"%.");
-		}
+			System.out.println("Even numbers:");
+			for (int i=0;i<evenNumbers.size();i++)
+			{
+				System.out.println(evenNumbers.get(i));
+			}
+			System.out.println("Odd numbers:");
+			for (int i=oddNumbers.size()-1;i>=0;i--)
+			{
+				System.out.println(oddNumbers.get(i));
+			}
+			
+			System.out.println("Odd numbers sum :"+oddSum+" even numbers sum:"+evenSum);
+			System.out.println("Fibonacci series:");
+			for(int i=0;i<fibNumbers.size();i++)
+			{
+				System.out.println(fibNumbers.get(i));
+			}
+
+			System.out.println("Even number percentage is:"+(evenCount*100/fibNumbers.size())+"%.");
+			System.out.println("Odd number percentage is:"+(oddCount*100/fibNumbers.size())+"%.");
+		
 		
 	}
 			
