@@ -1,7 +1,6 @@
 package MainClass;
 
 import PatientClass.Patient;
-
 import java.util.ArrayList;
 import java.util.Random;
 
