@@ -52,7 +52,6 @@ public class TrainStation extends Station {
         }
     }
 
-
     public List<Passenger> getPassengersList() {
         return PassengersList;
     }

@@ -1,6 +1,5 @@
 package transportSystem.train;
 
-import sun.net.www.content.text.Generic;
 import transportSystem.station.Station;
 import transportSystem.station.TrainStation;
 import transportSystem.train.railcar.CargoRailCar;
