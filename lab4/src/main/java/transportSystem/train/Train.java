@@ -128,5 +128,7 @@ public class Train {
         return cartsString;
     }
 
-
+    public Station getStationReference() {
+        return stationReference;
+    }
 }
