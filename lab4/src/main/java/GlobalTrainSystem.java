@@ -25,26 +25,33 @@ public class GlobalTrainSystem {
 
     public void testCase() {
 
-        Passenger ps1 = new Passenger(40, "Petro", stationNames[1], ComfortLevel.TOLERABLE);
-        Passenger ps2 = new Passenger(60, "Lara", stationNames[0], ComfortLevel.HEAVENLY);
-        Passenger ps3 = new Passenger(50, "Den", stationNames[2], ComfortLevel.UNCOMFORTABLE);
+        Station st1 = new TrainStation(stationNames[0]);
+        Station st2 = new TrainStation(stationNames[1]);
+        Station st3 = new TrainStation(stationNames[2]);
+
+        Station dp = new Depo();
+        Station tm = new TerminalCargoStation();
+
+
+        Cargo steelCase = new Cargo(10,5,"case");
+
+        Passenger ps1 = new Passenger(40, "Petro", st3, ComfortLevel.TOLERABLE);
+        Passenger ps2 = new Passenger(60, "Lara", st3, ComfortLevel.HEAVENLY,steelCase);
+        Passenger ps3 = new Passenger(50, "Den", st3, ComfortLevel.UNCOMFORTABLE);
 
         passengers.add(ps1);
         passengers.add(ps2);
         passengers.add(ps3);
 
-        Station st1 = new TrainStation(stationNames[0], passengers);
-        passengers.clear();
-        passengers.add(ps2);
-        passengers.add(ps3);
-        Station st2 = new TrainStation(stationNames[1], passengers);
-        Station dp = new Depo();
-        Station tm = new TerminalCargoStation();
-
         stations.add(dp);
         stations.add(st1);
         stations.add(st2);
+        stations.add(st3);
         stations.add(tm);
+
+        ((TrainStation)st1).addPassenger(ps1);
+        ((TrainStation)st1).addPassenger(ps2);
+        ((TrainStation)st1).addPassenger(ps3);
 
         Locomotive locomotive = new Locomotive();
 
@@ -59,12 +66,14 @@ public class GlobalTrainSystem {
         Train train = new Train("parovoz", railcars, stations, locomotive);
         locomotive.setTrainReference(train);
 
-
-        for (int i = 0; i < 5; i++) {
-            System.out.printf("\n\n" + train.toString());
+        for (int i = 0; i < 6; i++) {
+           // System.out.printf("\n\n" + train.toString());
             train.moveToNextStation();
         }
 
+        System.out.printf(st3.toString());
+
+        //System.out.printf(train.displayRailCarts());
     }
 
 }

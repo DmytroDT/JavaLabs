@@ -1,5 +1,6 @@
 package transportSystem.baggage;
 
+import transportSystem.station.Station;
 import transportSystem.train.ComfortLevel;
 import transportSystem.train.railcar.PassengerRailCar;
 
@@ -7,18 +8,18 @@ public class Passenger {
 
     double weight;
     String name;
-    String destination;
+    Station destination;
     ComfortLevel desiredComfort;
     Cargo luggage = null;
 
-    public Passenger(double weight, String name, String destination, ComfortLevel desiredComfort) {
+    public Passenger(double weight, String name, Station destination, ComfortLevel desiredComfort) {
         this.weight = weight;
         this.name = name;
         this.destination = destination;
         this.desiredComfort = desiredComfort;
     }
 
-    public Passenger(double weight, String name, String destination, ComfortLevel desiredComfort, Cargo luggage) {
+    public Passenger(double weight, String name, Station destination, ComfortLevel desiredComfort, Cargo luggage) {
         this.weight = weight;
         this.name = name;
         this.destination = destination;
@@ -42,11 +43,24 @@ public class Passenger {
         return name;
     }
 
-    public String getDestination() {
+    public Station getDestination() {
         return destination;
     }
 
     public ComfortLevel getDesiredComfort() {
         return desiredComfort;
     }
+
+    @Override
+    public String toString() {
+
+        String holdingLuggage = "";
+        if(luggage!=null){
+            holdingLuggage="with luggage "+luggage.getName();
+        }
+
+        return "\nPassenger" + name + ", want to get to " + destination +
+                " in a railcar of comfort " + desiredComfort  + holdingLuggage ;
+    }
+
 }

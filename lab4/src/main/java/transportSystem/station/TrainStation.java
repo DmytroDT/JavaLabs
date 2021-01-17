@@ -8,19 +8,19 @@ import java.util.*;
 
 public class TrainStation extends Station {
 
-    List<Passenger> PassengersList = new ArrayList<Passenger>();
+    List<Passenger> passengersList = new ArrayList<Passenger>();
 
     public TrainStation(String name, List<Passenger> passengersList) {
         this.setName(name);
-        PassengersList = passengersList;
+        this.passengersList = passengersList;
     }
 
     public TrainStation(String name) {
         this.setName(name);
     }
 
-    void addPassenger(Passenger passenger) {
-        PassengersList.add(passenger);
+    public  void addPassenger(Passenger passenger) {
+        passengersList.add(passenger);
     }
 
     void fillTrains() {
@@ -37,7 +37,7 @@ public class TrainStation extends Station {
 
         List<Passenger> passengersReference = new ArrayList<Passenger>();
 
-        for (Passenger passenger : PassengersList) {
+        for (Passenger passenger : passengersList) {
             for (PassengerRailCar cart : passengerRailCarList) {
 
                 if (passenger.satisfiedWithComfort(cart)) {
@@ -48,12 +48,22 @@ public class TrainStation extends Station {
         }
 
         for (Passenger passenger : passengersReference) {
-            PassengersList.remove(passenger);
+            passengersList.remove(passenger);
         }
     }
 
     public List<Passenger> getPassengersList() {
-        return PassengersList;
+        return passengersList;
     }
 
+    @Override
+    public String toString() {
+
+        String passengersOnStation="";
+        for( Passenger passenger : passengersList){
+            passengersOnStation+=passenger.toString();
+        }
+
+        return "TrainStation " + name +" has awaiting passengers " + passengersOnStation;
+    }
 }

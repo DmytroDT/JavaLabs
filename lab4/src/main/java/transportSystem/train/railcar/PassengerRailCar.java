@@ -5,6 +5,7 @@ import transportSystem.baggage.Passenger;
 import transportSystem.station.Depo;
 import transportSystem.station.Station;
 import transportSystem.station.TerminalCargoStation;
+import transportSystem.station.TrainStation;
 import transportSystem.train.ComfortLevel;
 
 import java.util.*;
@@ -43,8 +44,8 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
 
     void placeLuggage(Passenger passenger) {
 
-        if (passenger.getLuggage() != null) {
-            loadLuggage(passenger, passenger.getLuggage());
+        if ((passenger.getLuggage() != null) && (loadedLuggage.size() <= maxBaggage)) {
+            loadedLuggage.put(passenger, passenger.getLuggage());
         }
     }
 
@@ -63,17 +64,17 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
             seatedPassengers.clear();
             loadedLuggage.clear();
         } else {
-            offloadPassengers(station);
+            offloadPassengers((TrainStation) station);
         }
 
     }
 
-    void offloadPassengers(Station station) {
+    void offloadPassengers(TrainStation station) {
 
         for (Integer seat : new ArrayList<Integer>(seatedPassengers.keySet())) {
 
-            if (seatedPassengers.get(seat).getDestination() == station.getName()) {
-                offloadLuggage(seatedPassengers.get(seat));
+            if (seatedPassengers.get(seat).getDestination() == station) {
+                offloadLuggage( seatedPassengers.get(seat));
                 seatedPassengers.remove(seat);
             }
         }
@@ -83,12 +84,6 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
     void offloadLuggage(Passenger passenger) {
         if (loadedLuggage.containsKey(passenger)) {
             loadedLuggage.remove(passenger);
-        }
-    }
-
-    public void loadLuggage(Passenger passenger, Cargo luggage) {
-        if (loadedLuggage.size() <= maxBaggage) {
-            loadedLuggage.put(passenger, luggage);
         }
     }
 

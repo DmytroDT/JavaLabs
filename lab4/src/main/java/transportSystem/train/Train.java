@@ -10,6 +10,7 @@ import transportSystem.train.railcar.RailCar;
 import java.util.*;
 
 public class Train {
+
     String name;
     List<RailCar> connectedRailCars = new ArrayList<RailCar>();
     List<PassengerRailCar> passengerRailCarList = new ArrayList<PassengerRailCar>();
@@ -26,8 +27,7 @@ public class Train {
         this.locomotiveReference = locomotiveReference;
         currentStation = this.routeStations.iterator();
         stationReference = currentStation.next();
-        connectPassengerRailCars(connectedRailCars);
-
+        selectPassengerRailCars(connectedRailCars);
     }
 
     public double getTrainWeight() {
@@ -50,7 +50,7 @@ public class Train {
         }
     }
 
-    void connectPassengerRailCars(List<RailCar> railCars) {
+    void selectPassengerRailCars(List<RailCar> railCars) {
 
         for (RailCar cart : railCars) {
             if (cart instanceof PassengerRailCar) {
@@ -123,7 +123,7 @@ public class Train {
     public String displayRailCarts() {
         String cartsString = "";
         for (RailCar cart : connectedRailCars) {
-            cartsString += cart.toString();
+            cartsString += "\n"+cart.toString();
         }
         return cartsString;
     }
