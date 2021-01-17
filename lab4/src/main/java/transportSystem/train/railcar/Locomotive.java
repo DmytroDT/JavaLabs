@@ -5,7 +5,6 @@ import transportSystem.train.Train;
 public class Locomotive extends RailCar {
 
     double carryingPower;
-    Train trainReference;
 
     public Locomotive() {
         setName("standard locomotive");
@@ -14,20 +13,19 @@ public class Locomotive extends RailCar {
         carryingPower = 5000000;
     }
 
-    public Locomotive(double cartWeight, double cartMaxWeight, double carryingPower, Train trainReference) {
+    public Locomotive(double cartWeight, double cartMaxWeight, double carryingPower) {
         this.setCartWeight(cartWeight);
         this.setCartMaxWeight(cartMaxWeight);
         this.carryingPower = carryingPower;
-        this.trainReference = trainReference;
     }
 
-    public void setTrainReference(Train trainReference) {
-        this.trainReference = trainReference;
+    public boolean isAbleToPush(Train train){
+        return carryingPower>computeWeight()+train.getTrainWeight();
     }
 
     @Override
     public double computeWeight() {
-        return trainReference.getTrainWeight() + this.getCartWeight();
+        return this.getCartWeight();
     }
 
     @Override

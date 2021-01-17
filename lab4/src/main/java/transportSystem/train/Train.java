@@ -12,6 +12,7 @@ import java.util.*;
 public class Train {
 
     String name;
+    //TODO: change train collections structure to base + typecast methods
     List<RailCar> connectedRailCars = new ArrayList<RailCar>();
     List<PassengerRailCar> passengerRailCarList = new ArrayList<PassengerRailCar>();
     List<Station> routeStations = new ArrayList<Station>();
@@ -39,8 +40,9 @@ public class Train {
     }
 
     void ifOverloaded() {
+
         RailCar CargoReference = null;
-        while (locomotiveReference.isOverloaded()) {
+        while (!locomotiveReference.isAbleToPush(this)) {
             for (RailCar railCar : connectedRailCars) {
                 if (railCar instanceof CargoRailCar) {
                     CargoReference = railCar;
@@ -94,12 +96,40 @@ public class Train {
 
         List<PassengerRailCar> referenceList = new ArrayList<PassengerRailCar>();
 
+        Collections.copy(passengerRailCarList, referenceList);
+        Collections.sort(referenceList);
+
+        return referenceList;
+    }
+
+    public int summaryPassengers(){
+        int summaryCount=0;
         for (PassengerRailCar cart : passengerRailCarList) {
-            referenceList.add((PassengerRailCar) cart);
+            summaryCount+=cart.countPassengers();
+        }
+        return summaryCount;
+    }
+
+    public int summaryLuggage(){
+        int summaryCount=0;
+        for (PassengerRailCar cart : passengerRailCarList) {
+            summaryCount+=cart.countLuggage();
+        }
+        return summaryCount;
+    }
+
+    public PassengerRailCar seekCarByPassengerNumbers(int lowerBound,int upperBound){
+        int refCount;
+        PassengerRailCar foundRailCar = null;
+
+        for(PassengerRailCar cart:passengerRailCarList){
+                refCount=cart.countPassengers();
+                if((lowerBound<=refCount)&&(refCount<=upperBound)){
+                    foundRailCar= cart;
+                }
         }
 
-        Collections.sort(referenceList);
-        return referenceList;
+        return  foundRailCar;
     }
 
     @Override
@@ -123,7 +153,7 @@ public class Train {
     public String displayRailCarts() {
         String cartsString = "";
         for (RailCar cart : connectedRailCars) {
-            cartsString += "\n"+cart.toString();
+            cartsString += "\n" + cart.toString();
         }
         return cartsString;
     }

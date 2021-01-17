@@ -12,7 +12,7 @@ public class TrainStation extends Station {
 
     public TrainStation(String name, List<Passenger> passengersList) {
         this.setName(name);
-        this.passengersList = passengersList;
+        addPassengerList(passengersList);
     }
 
     public TrainStation(String name) {
@@ -23,14 +23,8 @@ public class TrainStation extends Station {
         passengersList.add(passenger);
     }
 
-    void fillTrains() {
-
-        List<PassengerRailCar> railCArsReference = new ArrayList<PassengerRailCar>();
-
-        for (Train train : this.TrainList) {
-            railCArsReference = train.sortAvailableCarsByComfort();
-            boardTrain(railCArsReference);
-        }
+    public  void addPassengerList( List<Passenger> passengers) {
+        Collections.copy(passengers,passengersList);
     }
 
     public void boardTrain(List<PassengerRailCar> passengerRailCarList) {

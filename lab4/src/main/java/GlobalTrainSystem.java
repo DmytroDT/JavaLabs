@@ -64,16 +64,15 @@ public class GlobalTrainSystem {
         railcars.add(stnd);
 
         Train train = new Train("parovoz", railcars, stations, locomotive);
-        locomotive.setTrainReference(train);
 
-        for (int i = 0; i < 6; i++) {
-           // System.out.printf("\n\n" + train.toString());
-            train.moveToNextStation();
-        }
+        train.moveToNextStation();
 
-        System.out.printf(st3.toString());
+        System.out.printf("Passengers: " + train.summaryPassengers()+" luggage"+train.summaryLuggage());
 
-        //System.out.printf(train.displayRailCarts());
+        train.moveToNextStation();
+
+        System.out.printf("Passengers: " + train.summaryPassengers()+" luggage"+train.summaryLuggage());
+
     }
 
 }

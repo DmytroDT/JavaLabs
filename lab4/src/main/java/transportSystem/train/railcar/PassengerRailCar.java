@@ -74,7 +74,7 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
         for (Integer seat : new ArrayList<Integer>(seatedPassengers.keySet())) {
 
             if (seatedPassengers.get(seat).getDestination() == station) {
-                offloadLuggage( seatedPassengers.get(seat));
+                offloadLuggage(seatedPassengers.get(seat));
                 seatedPassengers.remove(seat);
             }
         }
@@ -85,6 +85,14 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
         if (loadedLuggage.containsKey(passenger)) {
             loadedLuggage.remove(passenger);
         }
+    }
+
+    public int countPassengers() {
+        return seatedPassengers.size();
+    }
+
+    public int countLuggage() {
+        return loadedLuggage.size();
     }
 
     @Override
