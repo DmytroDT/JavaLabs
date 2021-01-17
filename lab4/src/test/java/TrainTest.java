@@ -12,11 +12,9 @@ import transportSystem.station.*;
 import transportSystem.train.Train;
 import transportSystem.train.railcar.*;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 
 @RunWith(MockitoJUnitRunner.class)
 public class TrainTest {
@@ -67,7 +65,7 @@ public class TrainTest {
     public void trainShouldMoveToDestinationTest() {
 
         moveTrain(2);
-        assertEquals(stationsList.get(1), train.getStationReference());
+        assertEquals(stationsList.get(1), train.getCurrentStation());
     }
 
    @Test

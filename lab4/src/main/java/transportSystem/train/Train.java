@@ -16,8 +16,8 @@ public class Train {
     List<RailCar> connectedRailCars = new ArrayList<RailCar>();
     List<PassengerRailCar> passengerRailCarList = new ArrayList<PassengerRailCar>();
     List<Station> routeStations = new ArrayList<Station>();
-    Iterator<Station> currentStation;
-    Station stationReference;
+    Iterator<Station> stationIterator;
+    Station currentStation;
     Locomotive locomotiveReference;
 
 
@@ -26,8 +26,8 @@ public class Train {
         this.connectedRailCars = connectedRailCars;
         this.routeStations = routeStations;
         this.locomotiveReference = locomotiveReference;
-        currentStation = this.routeStations.iterator();
-        stationReference = currentStation.next();
+        stationIterator = this.routeStations.iterator();
+        currentStation = stationIterator.next();
         selectPassengerRailCars(connectedRailCars);
     }
 
@@ -63,18 +63,22 @@ public class Train {
 
     public void changeDirection() {
         Collections.reverse(routeStations);
-        currentStation = routeStations.iterator();
-        stationReference = currentStation.next();
+        stationIterator = routeStations.iterator();
+        currentStation = stationIterator.next();
     }
 
     public void moveToNextStation() {
+        Station previousStation = currentStation;
 
         ifOverloaded();
 
-        if (!currentStation.hasNext()) {
+        if (!stationIterator.hasNext()) {
             changeDirection();
         }
-        stationReference = currentStation.next();
+        currentStation = stationIterator.next();
+
+        System.out.printf("\nTrain "+name+" moved from station "+ previousStation.getName()+" to station " + currentStation.getName()+
+                " remaining passengers- "+summaryPassengers()+" ,remaining luggage- "+summaryLuggage()+".");
 
         leaveRailCars();
         boardTrain();
@@ -82,24 +86,26 @@ public class Train {
 
     void leaveRailCars() {
         for (PassengerRailCar cart : passengerRailCarList) {
-            cart.leaveRailCar(stationReference);
+            cart.leaveRailCar(currentStation);
         }
     }
 
     void boardTrain() {
-        if (stationReference instanceof TrainStation) {
-            ((TrainStation) stationReference).boardTrain(passengerRailCarList);
+        if ((currentStation instanceof TrainStation)&&(!((TrainStation) currentStation).isStationEmpty())) {
+            ((TrainStation) currentStation).boardTrain(passengerRailCarList);
         }
     }
 
-    public List<PassengerRailCar> sortAvailableCarsByComfort() {
+    public String listSortedByComfortCarts() {
 
-        List<PassengerRailCar> referenceList = new ArrayList<PassengerRailCar>();
+        Collections.sort(passengerRailCarList);
+        String output="";
 
-        Collections.copy(passengerRailCarList, referenceList);
-        Collections.sort(referenceList);
+        for(PassengerRailCar cart: passengerRailCarList){
+            output+="\n"+cart.toString();
+        }
 
-        return referenceList;
+        return output;
     }
 
     public int summaryPassengers(){
@@ -147,7 +153,7 @@ public class Train {
         return "Train " + name + " powered by locomotive: " + ((RailCar) locomotiveReference).getName() +
                 "\nconnected passenger carts: " + cartsName +
                 "\nroute: " + stationNames +
-                "\ncurrently on station: " + stationReference.getName();
+                "\ncurrently on station: " + currentStation.getName();
     }
 
     public String displayRailCarts() {
@@ -158,7 +164,7 @@ public class Train {
         return cartsString;
     }
 
-    public Station getStationReference() {
-        return stationReference;
+    public Station getCurrentStation() {
+        return currentStation;
     }
 }

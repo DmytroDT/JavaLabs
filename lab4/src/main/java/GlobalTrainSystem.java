@@ -14,64 +14,93 @@ import java.util.*;
 
 public class GlobalTrainSystem {
 
+    Random rnd = new Random();
+
     List<Train> trains = new ArrayList<Train>();
     List<RailCar> railcars = new ArrayList<RailCar>();
     List<Station> stations = new ArrayList<Station>();
-    List<Passenger> passengers = new ArrayList<Passenger>();
     List<Cargo> cargo = new ArrayList<Cargo>();
 
-    String[] stationNames = {"Makova", "Holovan", "Koyota"};
+    String[] passengerNames = {"Pavlo", "Dmytro", "Taras","Bogdan","Oleg"};
+    String[] passengerSurnames = {" Pavluk", " Dovgal", " Jigal"," Kvas"," ProstoOleg"};
 
+    void initialize(){
 
-    public void testCase() {
+        stations.add(new Depo());
+        stations.add(new TrainStation("Makova"));
+        stations.add(new TrainStation("Holovan"));
+        stations.add(new TrainStation("Koyota"));
+        stations.add(new TrainStation("polyanova"));
+        stations.add(new TerminalCargoStation());
 
-        TrainStation st1 = new TrainStation(stationNames[0]);
-        Station st2 = new TrainStation(stationNames[1]);
-        Station st3 = new TrainStation(stationNames[2]);
+        railcars.add( new PassengerRailCar("Kupe", 40, 40, ComfortLevel.UNCOMFORTABLE));
+        railcars.add( new PassengerRailCar());
+        railcars.add(  new PassengerRailCar("lux", 5, 10, ComfortLevel.HEAVENLY));
 
-        Station dp = new Depo();
-        Station tm = new TerminalCargoStation();
+        create2BaseTrains();
+    }
 
-        Cargo steelCase = new Cargo(10,5,"case");
+    void create2BaseTrains(){
 
-        Passenger ps1 = new Passenger(40, "Petro", st3, ComfortLevel.TOLERABLE);
-        Passenger ps2 = new Passenger(60, "Lara", st3, ComfortLevel.HEAVENLY,steelCase);
-        Passenger ps3 = new Passenger(50, "Den", st3, ComfortLevel.UNCOMFORTABLE);
+        List<Station> route = Arrays.asList(stations.get(0),stations.get(1),stations.get(2),stations.get(3),stations.get(4),stations.get(5));
+        List<RailCar> cars = Arrays.asList(railcars.get(0),railcars.get(1),railcars.get(2));
+        trains.add(new Train ("Train 1",cars,route,new Locomotive()));
 
-        passengers.add(ps1);
-        passengers.add(ps2);
-        passengers.add(ps3);
+        //route = Arrays.asList(stations.get(0),stations.get(2),stations.get(4),stations.get(5));
+        //cars = Arrays.asList(railcars.get(0),railcars.get(1),railcars.get(2));
+        //trains.add(new Train ("Train 2",cars,route,new Locomotive()));
 
-        stations.add(dp);
-        stations.add(st1);
-        stations.add(st2);
-        stations.add(st3);
-        stations.add(tm);
+    }
 
-        st1.addPassenger(ps1);
-        st1.addPassenger(ps2);
-        st1.addPassenger(ps3);
+    void fillWithRandomPassengers(int amountOfPassengers){
 
-        Locomotive locomotive = new Locomotive();
+        int chosenStation=0;
+        int chosenDestination=0;
 
-        RailCar kp = new PassengerRailCar("Kupe", 40, 40, ComfortLevel.TOLERABLE);
-        RailCar stnd = new PassengerRailCar();
-        RailCar lux = new PassengerRailCar("lux", 5, 10, ComfortLevel.HEAVENLY);
+        for(int i=0;i<amountOfPassengers;i++){
+            do{
+                chosenStation = randomIntInRange(1,stations.size()-2);
+                chosenDestination= randomIntInRange(1,stations.size()-2);
+            }while (chosenDestination==chosenStation);
 
-        railcars.add(kp);
-        railcars.add(lux);
-        railcars.add(stnd);
+            ((TrainStation)stations.get(chosenStation)).addPassenger(createRandomPassenger((TrainStation)stations.get(chosenDestination)));
+        }
+    }
 
-        Train train = new Train("parovoz", railcars, stations, locomotive);
+    Passenger createRandomPassenger(Station destination){
+        String passengerFullname = passengerNames[rnd.nextInt(5)]+passengerSurnames[rnd.nextInt(5)];;
+        double passengerWeight=randomIntInRange(40,80);
+        ComfortLevel comfortLevel = ComfortLevel.assignComfortLevel(randomIntInRange(0,100));
+        Cargo luggage = null;
+        if(rnd.nextBoolean()){
+            luggage=new Cargo(10,10,"steel case");
+        }
+        return  new Passenger(passengerWeight,passengerFullname,destination,comfortLevel,luggage);
+    }
 
-        train.moveToNextStation();
+    int randomIntInRange(int min,int max){
+        int delta=max-min;
+        return rnd.nextInt(delta+1)+min;
+    }
 
-        System.out.printf("Passengers: " + train.summaryPassengers()+" luggage"+train.summaryLuggage());
+    public void progressTime(int amountOfHour){
 
-        train.moveToNextStation();
+        for(int i=0;i<amountOfHour;i++){
+            for(Train train:trains){
+                train.moveToNextStation();
+            }
+        }
+    }
 
-        System.out.printf("Passengers: " + train.summaryPassengers()+" luggage"+train.summaryLuggage());
+    public void printTrains(){
+        for(Train train:trains){
+            System.out.printf("\n"+train.toString());
+        }
+    }
 
+    String displayRailCarsByComfort(int trainNumber){
+
+        return  trains.get(trainNumber).listSortedByComfortCarts();
     }
 
 }

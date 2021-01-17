@@ -16,20 +16,20 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
     Map<Passenger, Cargo> loadedLuggage = new HashMap<Passenger, Cargo>();
 
     int maxSeats;
-    double maxBaggage;
+    double maxLuggage;
     ComfortLevel comfortLevel;
 
     public PassengerRailCar() {
         setName("standard passenger railcar");
         this.maxSeats = 54;
-        this.maxBaggage = 25;
+        this.maxLuggage = 25;
         this.comfortLevel = ComfortLevel.TOLERABLE;
     }
 
     public PassengerRailCar(String name, int maxSeats, double maxBaggage, ComfortLevel comfortLevel) {
         this.setName(name);
         this.maxSeats = maxSeats;
-        this.maxBaggage = maxBaggage;
+        this.maxLuggage = maxBaggage;
         this.comfortLevel = comfortLevel;
     }
 
@@ -44,7 +44,7 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
 
     void placeLuggage(Passenger passenger) {
 
-        if ((passenger.getLuggage() != null) && (loadedLuggage.size() <= maxBaggage)) {
+        if ((passenger.getLuggage() != null) && (loadedLuggage.size() <= maxLuggage)) {
             loadedLuggage.put(passenger, passenger.getLuggage());
         }
     }
@@ -71,10 +71,19 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
 
     void offloadPassengers(TrainStation station) {
 
+        String luggageName="";
+        Passenger passRef=null;
+
         for (Integer seat : new ArrayList<Integer>(seatedPassengers.keySet())) {
 
             if (seatedPassengers.get(seat).getDestination() == station) {
-                offloadLuggage(seatedPassengers.get(seat));
+
+                passRef=seatedPassengers.get(seat);
+
+                System.out.printf("\nPassenger "+passRef.getName()+
+                        getLuggageName(passRef)+
+                        " leaves train at "+station.getName()+".");
+                offloadLuggage(passRef);
                 seatedPassengers.remove(seat);
             }
         }
@@ -84,6 +93,22 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
     void offloadLuggage(Passenger passenger) {
         if (loadedLuggage.containsKey(passenger)) {
             loadedLuggage.remove(passenger);
+        }
+    }
+
+    Cargo getLuggage(Passenger passenger) {
+        Cargo luggageRef=null;
+        if (loadedLuggage.containsKey(passenger)) {
+            luggageRef=loadedLuggage.get(passenger);
+        }
+        return luggageRef;
+    }
+
+    String getLuggageName(Passenger passenger){
+        if(getLuggage(passenger)!=null){
+            return " carrying "+getLuggage(passenger).getName();
+        }else{
+            return "";
         }
     }
 
@@ -124,13 +149,17 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
 
     @Override
     public String toString() {
-        return "PassengerRailCar{" +
-                "SeatedPassengers=" + seatedPassengers +
-                ", LoadedLuggage=" + loadedLuggage +
-                ", type='" + getName() + '\'' +
-                ", comfortLevel=" + comfortLevel +
-                ", cartWeight=" + cartWeight +
-                ", cartMaxWeight=" + cartMaxWeight +
-                '}';
+        Cargo refLuggage=null;
+
+        String outputStr="\nRailCar "+getName()+" of comfort level "+comfortLevel.name()+" with max seats "+maxSeats+
+                " can hold luggage " + maxLuggage +" currently has on board:";
+
+        for (Integer seat : new ArrayList<Integer>(seatedPassengers.keySet())){
+            outputStr+="\n"+seat+" "+seatedPassengers.get(seat).getName()+
+                    getLuggageName(seatedPassengers.get(seat));
+        }
+
+        return outputStr;
     }
+
 }

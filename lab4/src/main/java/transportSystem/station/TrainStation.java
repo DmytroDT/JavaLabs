@@ -31,31 +31,33 @@ public class TrainStation extends Station {
 
         List<Passenger> passengersReference = new ArrayList<Passenger>();
 
-        for (Passenger passenger : passengersList) {
-            for (PassengerRailCar cart : passengerRailCarList) {
+            for (Passenger passenger : passengersList) {
+                for (PassengerRailCar cart : passengerRailCarList) {
 
-                if (passenger.satisfiedWithComfort(cart)) {
-                    cart.addPassenger(passenger);
-                    passengersReference.add(passenger);
+                    if (passenger.satisfiedWithComfort(cart)) {
+                        cart.addPassenger(passenger);
+                        passengersReference.add(passenger);
+                    }
                 }
             }
-        }
 
-        for (Passenger passenger : passengersReference) {
-            passengersList.remove(passenger);
-        }
+            for (Passenger passenger : passengersReference) {
+                passengersList.remove(passenger);
+            }
     }
 
-    public List<Passenger> getPassengersList() {
-        return passengersList;
+    public boolean isStationEmpty(){
+        return passengersList.isEmpty();
     }
 
     @Override
     public String toString() {
 
         String passengersOnStation="";
-        for( Passenger passenger : passengersList){
-            passengersOnStation+=passenger.toString();
+        if(!passengersList.isEmpty()){
+            for( Passenger passenger : passengersList){
+                passengersOnStation+=passenger.toString();
+            }
         }
 
         return "TrainStation " + name +" has awaiting passengers " + passengersOnStation;
