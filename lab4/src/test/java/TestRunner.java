@@ -9,9 +9,9 @@ public class TestRunner {
         Result res = JUnitCore.runClasses(TrainTest.class);
 
         if(res.wasSuccessful()){
-            System.out.printf("Train arrived at destination");
+            System.out.printf("Train passed all the tests");
         }else{
-            System.out.printf("Train failed to arrive");
+            System.out.printf("Train failed tests");
         }
     }
 

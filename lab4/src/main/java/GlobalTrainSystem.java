@@ -25,13 +25,12 @@ public class GlobalTrainSystem {
 
     public void testCase() {
 
-        Station st1 = new TrainStation(stationNames[0]);
+        TrainStation st1 = new TrainStation(stationNames[0]);
         Station st2 = new TrainStation(stationNames[1]);
         Station st3 = new TrainStation(stationNames[2]);
 
         Station dp = new Depo();
         Station tm = new TerminalCargoStation();
-
 
         Cargo steelCase = new Cargo(10,5,"case");
 
@@ -49,9 +48,9 @@ public class GlobalTrainSystem {
         stations.add(st3);
         stations.add(tm);
 
-        ((TrainStation)st1).addPassenger(ps1);
-        ((TrainStation)st1).addPassenger(ps2);
-        ((TrainStation)st1).addPassenger(ps3);
+        st1.addPassenger(ps1);
+        st1.addPassenger(ps2);
+        st1.addPassenger(ps3);
 
         Locomotive locomotive = new Locomotive();
 

@@ -1,55 +1,63 @@
-import org.junit.Test;
-import transportSystem.baggage.Cargo;
-import transportSystem.baggage.Passenger;
+import  org.junit.Test;
+import static org.junit.Assert.*;
+import org.junit.Before;
+
+import static org.mockito.Mockito.*;
+
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.junit.*;
+
 import transportSystem.station.*;
-import transportSystem.train.ComfortLevel;
 import transportSystem.train.Train;
 import transportSystem.train.railcar.*;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
 
+@RunWith(MockitoJUnitRunner.class)
 public class TrainTest {
 
-    List<Station> stations = new ArrayList<Station>();
-    List<RailCar> railCars = new ArrayList<RailCar>();
-
     Train train;
-    Station destination;
-    Locomotive locomotive;
+
+    Station stationMock = mock(Station.class);
+    RailCar railCarMock = mock(PassengerRailCar.class);
+    Locomotive locomotiveMock = mock(Locomotive.class);
+
+    List<Station> stationsList = new ArrayList<Station>();
+    List<RailCar> railCarList = new ArrayList<RailCar>();
 
 
     @Before
     public void setup() {
 
-        destination = new TerminalCargoStation();
+        stationsList = (List<Station>) Arrays.asList(stationMock,stationMock,stationMock);
 
-        stations.add(new Depo());
-        stations.add(new TrainStation("firstStation"));
-        stations.add(new TrainStation("secondStation"));
-        stations.add(new TrainStation("ThirdStation"));
-        stations.add(destination);
+        railCarList = (List<RailCar>) Arrays.asList(railCarMock,railCarMock,railCarMock);
 
-        railCars.add(new PassengerRailCar());
+        when(locomotiveMock.isAbleToPush(ArgumentMatchers.<Train>any())).thenReturn(true);
 
-        locomotive = new Locomotive();
+        when(((PassengerRailCar)railCarMock).countPassengers()).thenReturn(1);
 
+        when(((PassengerRailCar)railCarMock).countLuggage()).thenReturn(0,0,1);
+
+        when(railCarMock.computeWeight()).thenReturn(10000.1);
+
+        train = new Train("tr", railCarList, stationsList,locomotiveMock);
     }
 
-    void setupPassengers(){
-        Cargo steelCase = new Cargo(10,5,"case");
+    @Test
+    public void checkPassengerCount(){
 
-        ((TrainStation)stations.get(3)).addPassenger(new Passenger(40, "Petro", stations.get(1), ComfortLevel.TOLERABLE));
-        ((TrainStation)stations.get(1)).addPassenger(new Passenger(40, "Petro", stations.get(2), ComfortLevel.TOLERABLE));
-        ((TrainStation)stations.get(1)).addPassenger(new Passenger(60, "Lara", stations.get(3), ComfortLevel.UNCOMFORTABLE,steelCase));
+        when(((PassengerRailCar)railCarMock).countPassengers()).thenReturn(15).thenReturn(20).thenReturn(30);
 
+        assertEquals(railCarList.get(1), train.seekCarByPassengerNumbers(16,25));
     }
 
-    void moveTrain(int amountOfStops){
+    void moveTrain(int amountOfStops) {
         for (int i = 0; i < amountOfStops; i++) {
             train.moveToNextStation();
         }
@@ -58,40 +66,20 @@ public class TrainTest {
     @Test
     public void trainShouldMoveToDestinationTest() {
 
-        train = new Train("testTrain", railCars, stations, locomotive);
-
-        moveTrain(4);
-
-        assertEquals(destination, train.getStationReference());
+        moveTrain(2);
+        assertEquals(stationsList.get(1), train.getStationReference());
     }
 
-    @Test
-    public void trainMustReturnCorrectNumberOfPassengersTest(){
-        setupPassengers();
-        train = new Train("testTrain", railCars, stations, locomotive);
-        //At firstStation 2 passengers await train
-        train.moveToNextStation();
+   @Test
+   public void trainMustReturnCorrectNumberOfPassengersTest() {
 
-        assertEquals(2,train.summaryPassengers());
-        assertEquals(1,train.summaryLuggage());
+       assertEquals(3, train.summaryPassengers());
+       assertEquals(1, train.summaryLuggage());
+   }
 
-    }
-
-    @Test
-    public void passengersShouldProperlyBoardAndLeaveTrainTest(){
-
-        setupPassengers();
-        train = new Train("testTrain", railCars, stations, locomotive);
-
-        // 2 - 3 stations are station one 2 passengers destination, at station 3 train picks up passenger with destination of station 1
-        moveTrain(3);
-        assertEquals(1,train.summaryPassengers());
-        assertEquals(0,train.summaryLuggage());
-        // at Terminal station all luggage and passengers leave train
-        moveTrain(1);
-        assertEquals(0,train.summaryPassengers());
-
-    }
-
+   @Test
+    public void trainMustReturnCorrectWeight(){
+       assertEquals(railCarMock.computeWeight()*3,train.getTrainWeight(),0.1); ;
+   }
 
 }
