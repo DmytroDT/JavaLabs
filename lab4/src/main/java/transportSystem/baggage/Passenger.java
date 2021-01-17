@@ -4,7 +4,9 @@ import transportSystem.station.Station;
 import transportSystem.train.ComfortLevel;
 import transportSystem.train.railcar.PassengerRailCar;
 
-public class Passenger {
+import java.io.Serializable;
+
+public class Passenger implements Serializable {
 
     double weight;
     String name;

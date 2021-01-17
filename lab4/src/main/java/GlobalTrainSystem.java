@@ -9,7 +9,8 @@ import transportSystem.train.Train;
 import transportSystem.train.railcar.Locomotive;
 import transportSystem.train.railcar.PassengerRailCar;
 import transportSystem.train.railcar.RailCar;
-
+import java.io.*;
+import java.io.FileOutputStream;
 import java.util.*;
 
 public class GlobalTrainSystem {
@@ -37,10 +38,9 @@ public class GlobalTrainSystem {
         railcars.add( new PassengerRailCar());
         railcars.add(  new PassengerRailCar("lux", 5, 10, ComfortLevel.HEAVENLY));
 
-        create2BaseTrains();
     }
 
-    void create2BaseTrains(){
+    void createBaseTrains(){
 
         List<Station> route = Arrays.asList(stations.get(0),stations.get(1),stations.get(2),stations.get(3),stations.get(4),stations.get(5));
         List<RailCar> cars = Arrays.asList(railcars.get(0),railcars.get(1),railcars.get(2));
@@ -50,6 +50,30 @@ public class GlobalTrainSystem {
         //cars = Arrays.asList(railcars.get(0),railcars.get(1),railcars.get(2));
         //trains.add(new Train ("Train 2",cars,route,new Locomotive()));
 
+    }
+
+    void saveTrains() throws IOException {
+        if (!trains.isEmpty()) {
+            File savedTrains = new File("TrainSaveFile.txt");
+            savedTrains.createNewFile();
+            FileOutputStream trainsFileOutput = new FileOutputStream(savedTrains);
+            ObjectOutputStream trainsObjectoutput = new ObjectOutputStream(trainsFileOutput);
+            trainsObjectoutput.writeObject(trains);
+            trainsObjectoutput.close();
+            trainsFileOutput.close();
+        }
+    }
+    void loadTrains() throws IOException, ClassNotFoundException {
+        FileInputStream trainsFileInput= new FileInputStream("TrainSaveFile.txt");
+        ObjectInputStream trainsObjectInput = new ObjectInputStream(trainsFileInput);
+
+        trains = (ArrayList) trainsObjectInput.readObject();
+        trainsObjectInput.close();
+        trainsFileInput.close();
+
+        for(Train train : trains){
+            train.returnToDepo();
+        }
     }
 
     void fillWithRandomPassengers(int amountOfPassengers){
@@ -83,9 +107,9 @@ public class GlobalTrainSystem {
         return rnd.nextInt(delta+1)+min;
     }
 
-    public void progressTime(int amountOfHour){
+    public void progressTime(int amountOfHours){
 
-        for(int i=0;i<amountOfHour;i++){
+        for(int i=0;i<amountOfHours;i++){
             for(Train train:trains){
                 train.moveToNextStation();
             }

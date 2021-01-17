@@ -2,11 +2,13 @@ package transportSystem.train.railcar;
 
 import transportSystem.train.Train;
 
-public class Locomotive extends RailCar {
+import java.io.Serializable;
+
+public class Locomotive extends RailCar implements Serializable {
 
     double carryingPower;
 
-    public Locomotive() {
+    public Locomotive()  {
         setName("standard locomotive");
         this.setCartWeight(144000);
         this.setCartMaxWeight(2000000);

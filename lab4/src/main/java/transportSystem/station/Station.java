@@ -2,9 +2,10 @@ package transportSystem.station;
 
 import transportSystem.train.Train;
 
+import java.io.Serializable;
 import java.util.*;
 
-public abstract class Station {
+public abstract class Station implements Serializable {
 
     protected String name;
     protected List<Train> TrainList = new ArrayList<Train>();

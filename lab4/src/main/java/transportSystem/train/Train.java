@@ -7,17 +7,18 @@ import transportSystem.train.railcar.Locomotive;
 import transportSystem.train.railcar.PassengerRailCar;
 import transportSystem.train.railcar.RailCar;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Train {
+public class Train implements Serializable {
 
     String name;
     //TODO: change train collections structure to base + typecast methods
     List<RailCar> connectedRailCars = new ArrayList<RailCar>();
     List<PassengerRailCar> passengerRailCarList = new ArrayList<PassengerRailCar>();
     List<Station> routeStations = new ArrayList<Station>();
-    Iterator<Station> stationIterator;
-    Station currentStation;
+    transient Iterator<Station> stationIterator;
+    transient Station currentStation;
     Locomotive locomotiveReference;
 
 
@@ -167,4 +168,16 @@ public class Train {
     public Station getCurrentStation() {
         return currentStation;
     }
+
+    public void forceEverybodyOut(){
+        for(PassengerRailCar cart: passengerRailCarList){
+            cart.getEverythingOff();
+        }
+    }
+
+    public void returnToDepo(){
+        stationIterator=routeStations.listIterator();
+        currentStation=stationIterator.next();
+    }
+
 }

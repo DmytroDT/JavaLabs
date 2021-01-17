@@ -8,9 +8,10 @@ import transportSystem.station.TerminalCargoStation;
 import transportSystem.station.TrainStation;
 import transportSystem.train.ComfortLevel;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class PassengerRailCar extends RailCar implements Comparable<PassengerRailCar> {
+public class PassengerRailCar extends RailCar implements Comparable<PassengerRailCar> , Serializable {
 
     Map<Integer, Passenger> seatedPassengers = new TreeMap<Integer, Passenger>();
     Map<Passenger, Cargo> loadedLuggage = new HashMap<Passenger, Cargo>();
@@ -160,6 +161,11 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
         }
 
         return outputStr;
+    }
+
+    public void getEverythingOff(){
+        seatedPassengers.clear();
+        loadedLuggage.clear();
     }
 
 }

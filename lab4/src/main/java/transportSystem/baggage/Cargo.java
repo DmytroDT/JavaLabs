@@ -1,6 +1,8 @@
 package transportSystem.baggage;
 
-public class Cargo {
+import java.io.Serializable;
+
+public class Cargo implements Serializable {
     double volume;
     double weight;
     String name;

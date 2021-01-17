@@ -1,6 +1,8 @@
 package transportSystem.train.railcar;
 
-public abstract class RailCar {
+import java.io.Serializable;
+
+public abstract class RailCar implements Serializable {
 
     protected String Name;
     protected double cartWeight;

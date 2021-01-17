@@ -1,6 +1,8 @@
 package transportSystem.station;
 
-public class Depo extends Station {
+import java.io.Serializable;
+
+public class Depo extends Station implements Serializable {
 
     public Depo() {
         setName("Depo");

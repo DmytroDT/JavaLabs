@@ -2,9 +2,10 @@ package transportSystem.train.railcar;
 
 import transportSystem.baggage.Cargo;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class CargoRailCar extends RailCar {
+public class CargoRailCar extends RailCar implements Serializable {
 
     double maxCapacity;
     List<Cargo> CargoList = new ArrayList<Cargo>();

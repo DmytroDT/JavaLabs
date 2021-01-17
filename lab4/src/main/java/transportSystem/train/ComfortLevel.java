@@ -1,7 +1,9 @@
 package transportSystem.train;
 
 
-    public enum ComfortLevel{
+import java.io.Serializable;
+
+public enum ComfortLevel implements Serializable {
 
         UNBEARABLE(0,9),
         UNCOMFORTABLE(10,25),
