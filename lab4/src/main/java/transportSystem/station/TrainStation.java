@@ -1,6 +1,7 @@
 package transportSystem.station;
 
 import transportSystem.baggage.Passenger;
+import transportSystem.train.Train;
 import transportSystem.train.railcar.PassengerRailCar;
 
 import java.io.Serializable;
@@ -27,14 +28,14 @@ public class TrainStation extends Station implements Serializable {
         Collections.copy(passengers,passengersList);
     }
 
-    public void boardTrain(List<PassengerRailCar> passengerRailCarList) {
+    public void boardTrain(Iterator<Station> currentStationIter,List<PassengerRailCar> passengerRailCarList) {
 
         List<Passenger> passengersReference = new ArrayList<Passenger>();
 
             for (Passenger passenger : passengersList) {
                 for (PassengerRailCar cart : passengerRailCarList) {
 
-                    if (passenger.satisfiedWithComfort(cart)) {
+                    if (passenger.satisfiedWithComfort(cart)&&passenger.comesThroughDestination(currentStationIter)) {
                         cart.addPassenger(passenger);
                         passengersReference.add(passenger);
                     }
@@ -45,6 +46,7 @@ public class TrainStation extends Station implements Serializable {
                 passengersList.remove(passenger);
             }
     }
+
 
     public boolean isStationEmpty(){
         return passengersList.isEmpty();

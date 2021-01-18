@@ -8,7 +8,7 @@ import java.util.*;
 public abstract class Station implements Serializable {
 
     protected String name;
-    protected List<Train> TrainList = new ArrayList<Train>();
+    protected List<Train> trainList = new ArrayList<Train>();
 
     public String getName() {
         return name;
@@ -19,10 +19,10 @@ public abstract class Station implements Serializable {
     }
 
     public List<Train> getTrainList() {
-        return TrainList;
+        return trainList;
     }
 
     public void setTrainList(List<Train> trainList) {
-        TrainList = trainList;
+        this.trainList = trainList;
     }
 }

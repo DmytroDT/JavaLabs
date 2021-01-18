@@ -5,6 +5,8 @@ import transportSystem.train.ComfortLevel;
 import transportSystem.train.railcar.PassengerRailCar;
 
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 public class Passenger implements Serializable {
 
@@ -31,6 +33,19 @@ public class Passenger implements Serializable {
 
     public boolean satisfiedWithComfort(PassengerRailCar cart) {
         return (this.getDesiredComfort().compareTo(cart.getComfortLevel()) <= 0) && (!cart.isOverloaded());
+    }
+
+    public boolean comesThroughDestination(Iterator<Station> stationiterator){
+        boolean hasDest = false;
+
+        while (stationiterator.hasNext()){
+
+            if(stationiterator.next()==destination){
+                hasDest=true;
+                break;
+            }
+        }
+        return hasDest;
     }
 
     public Cargo getLuggage() {
@@ -61,7 +76,7 @@ public class Passenger implements Serializable {
             holdingLuggage="with luggage "+luggage.getName();
         }
 
-        return "\nPassenger" + name + ", want to get to " + destination +
+        return "\nPassenger" + name + ", want to get to " + destination.getName() +
                 " in a railcar of comfort " + desiredComfort  + holdingLuggage ;
     }
 

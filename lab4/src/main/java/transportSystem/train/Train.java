@@ -27,8 +27,7 @@ public class Train implements Serializable {
         this.connectedRailCars = connectedRailCars;
         this.routeStations = routeStations;
         this.locomotiveReference = locomotiveReference;
-        stationIterator = this.routeStations.iterator();
-        currentStation = stationIterator.next();
+        reinitIterator();
         selectPassengerRailCars(connectedRailCars);
     }
 
@@ -53,6 +52,20 @@ public class Train implements Serializable {
         }
     }
 
+    public void connectRailCar(RailCar railCar){
+        connectedRailCars.add(railCar);
+        passengerRailCarList.clear();
+        selectPassengerRailCars(connectedRailCars);
+    }
+
+    public void addStationToRout(Station station){
+        Station endStationRef = routeStations.get(routeStations.size()-1);
+        routeStations.remove(endStationRef);
+        routeStations.add(station);
+        routeStations.add(endStationRef);
+        reinitIterator();
+    }
+
     void selectPassengerRailCars(List<RailCar> railCars) {
 
         for (RailCar cart : railCars) {
@@ -64,8 +77,7 @@ public class Train implements Serializable {
 
     public void changeDirection() {
         Collections.reverse(routeStations);
-        stationIterator = routeStations.iterator();
-        currentStation = stationIterator.next();
+        reinitIterator();
     }
 
     public void moveToNextStation() {
@@ -78,11 +90,14 @@ public class Train implements Serializable {
         }
         currentStation = stationIterator.next();
 
-        System.out.printf("\nTrain "+name+" moved from station "+ previousStation.getName()+" to station " + currentStation.getName()+
-                " remaining passengers- "+summaryPassengers()+" ,remaining luggage- "+summaryLuggage()+".");
+        System.out.printf("\nTrain "+name+" moved from station "+ previousStation.getName()+" to station " + currentStation.getName() +summaryOnboardObjects());
 
         leaveRailCars();
         boardTrain();
+    }
+
+    public String summaryOnboardObjects(){
+        return  "remaining passengers:"+summaryPassengers()+" ,remaining luggage:"+summaryLuggage()+".";
     }
 
     void leaveRailCars() {
@@ -93,7 +108,7 @@ public class Train implements Serializable {
 
     void boardTrain() {
         if ((currentStation instanceof TrainStation)&&(!((TrainStation) currentStation).isStationEmpty())) {
-            ((TrainStation) currentStation).boardTrain(passengerRailCarList);
+            ((TrainStation) currentStation).boardTrain(getCurrentStationIterator(),passengerRailCarList);
         }
     }
 
@@ -175,9 +190,13 @@ public class Train implements Serializable {
         }
     }
 
-    public void returnToDepo(){
+    public void reinitIterator(){
         stationIterator=routeStations.listIterator();
         currentStation=stationIterator.next();
+    }
+
+    public Iterator<Station> getCurrentStationIterator(){
+        return routeStations.listIterator(routeStations.indexOf(currentStation));
     }
 
 }

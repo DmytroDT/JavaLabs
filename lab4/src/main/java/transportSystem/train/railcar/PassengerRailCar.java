@@ -152,7 +152,7 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
     public String toString() {
         Cargo refLuggage=null;
 
-        String outputStr="\nRailCar "+getName()+" of comfort level "+comfortLevel.name()+" with max seats "+maxSeats+
+        String outputStr="RailCar "+getName()+" of comfort level "+comfortLevel.name()+" with max seats "+maxSeats+
                 " can hold luggage " + maxLuggage +" currently has on board:";
 
         for (Integer seat : new ArrayList<Integer>(seatedPassengers.keySet())){
