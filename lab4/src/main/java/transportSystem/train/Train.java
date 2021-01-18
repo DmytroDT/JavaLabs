@@ -54,7 +54,9 @@ public class Train implements Serializable {
 
     public void connectRailCar(RailCar railCar){
         connectedRailCars.add(railCar);
-        passengerRailCarList.clear();
+        if(!passengerRailCarList.isEmpty()){
+            passengerRailCarList.clear();
+        }
         selectPassengerRailCars(connectedRailCars);
     }
 
