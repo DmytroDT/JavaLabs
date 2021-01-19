@@ -31,21 +31,25 @@ public class Passenger implements Serializable {
         this.luggage = luggage;
     }
 
-    public boolean satisfiedWithComfort(PassengerRailCar cart) {
+     boolean satisfiedWithComfort(PassengerRailCar cart) {
         return (this.getDesiredComfort().compareTo(cart.getComfortLevel()) <= 0) && (!cart.isOverloaded());
     }
 
-    public boolean comesThroughDestination(Iterator<Station> stationiterator){
+    boolean comesThroughDestination(Iterator<Station> stationIterator){
         boolean hasDest = false;
 
-        while (stationiterator.hasNext()){
+        while (stationIterator.hasNext()){
 
-            if(stationiterator.next()==destination){
+            if(stationIterator.next()==destination){
                 hasDest=true;
                 break;
             }
         }
         return hasDest;
+    }
+
+    public boolean decideToBoard(PassengerRailCar cart,Iterator<Station> stationIterator){
+        return satisfiedWithComfort(cart)&&comesThroughDestination(stationIterator);
     }
 
     public Cargo getLuggage() {

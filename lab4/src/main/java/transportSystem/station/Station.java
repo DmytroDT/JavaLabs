@@ -25,4 +25,9 @@ public abstract class Station implements Serializable {
     public void setTrainList(List<Train> trainList) {
         this.trainList = trainList;
     }
+
+    public abstract void arriveAt(Train train);
+
+    public abstract void leave(Train train);
+
 }

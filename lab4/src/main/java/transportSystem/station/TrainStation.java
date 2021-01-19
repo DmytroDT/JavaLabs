@@ -1,7 +1,9 @@
 package transportSystem.station;
 
 import transportSystem.baggage.Passenger;
+import transportSystem.train.Train;
 import transportSystem.train.railcar.PassengerRailCar;
+import transportSystem.train.railcar.RailCar;
 
 import java.io.Serializable;
 import java.util.*;
@@ -24,31 +26,48 @@ public class TrainStation extends Station implements Serializable {
     }
 
     public  void addPassengerList( List<Passenger> passengers) {
-        Collections.copy(passengers,passengersList);
+        passengersList.addAll(passengers);
     }
 
-    public void boardTrain(Iterator<Station> currentStationIter,List<PassengerRailCar> passengerRailCarList) {
+    public void boardTrain(Iterator<Station> CurrStationIter, List<RailCar> passengerRailCarList) {
 
         List<Passenger> passengersReference = new ArrayList<Passenger>();
 
             for (Passenger passenger : passengersList) {
-                for (PassengerRailCar cart : passengerRailCarList) {
+                for (RailCar cart : passengerRailCarList) {
 
-                    if (passenger.satisfiedWithComfort(cart)&&passenger.comesThroughDestination(currentStationIter)) {
-                        cart.addPassenger(passenger);
-                        passengersReference.add(passenger);
+                    if(cart instanceof PassengerRailCar){
+
+                   PassengerRailCar passRCRef = (PassengerRailCar) cart;
+
+                    if(passenger.decideToBoard(passRCRef,CurrStationIter)){
+                            passRCRef.addPassenger(passenger);
+                            passengersReference.add(passenger);
+                            break;
+                        }
                     }
                 }
             }
 
-            for (Passenger passenger : passengersReference) {
-                passengersList.remove(passenger);
-            }
+            passengersList.removeAll(passengersReference);
     }
-
 
     public boolean isStationEmpty(){
         return passengersList.isEmpty();
+    }
+
+    public int getPassengerCount(){
+        return passengersList.size();
+    }
+
+    @Override
+    public void arriveAt(Train train) {
+        boardTrain(train.getCurrentStationIterator(),train.getRailCarts());
+    }
+
+    @Override
+    public void leave(Train train) {
+
     }
 
     @Override

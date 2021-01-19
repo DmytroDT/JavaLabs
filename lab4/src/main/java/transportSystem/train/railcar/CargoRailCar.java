@@ -20,6 +20,8 @@ public class CargoRailCar extends RailCar implements Serializable {
     public CargoRailCar(double maxCapacity, List<Cargo> cargoList) {
         this.maxCapacity = maxCapacity;
         this.cargoList = cargoList;
+        this.setCartWeight(25000);
+        this.setCartMaxWeight(120000);
     }
 
     public CargoRailCar(CargoRailCar refRC) {
@@ -35,13 +37,12 @@ public class CargoRailCar extends RailCar implements Serializable {
             summaryVolume += cargo.getVolume();
             summaryWeight += cargo.getWeight();
         }
-        return new Cargo(summaryVolume, summaryWeight, "");
+        return new Cargo(summaryVolume, summaryWeight, "SummaryCargo");
     }
 
     public boolean loadCargo(Cargo cargo) {
 
-        if (!isOverloaded() ||
-                (summaryCargo().getVolume() + cargo.getVolume()) > maxCapacity) {
+        if (isOverloaded() || (summaryCargo().getVolume() + cargo.getVolume()) > maxCapacity) {
             return false;
         }
 //TODO: Loading existing cargo exception?
@@ -49,14 +50,16 @@ public class CargoRailCar extends RailCar implements Serializable {
         return true;
     }
 
-    Cargo retrieveCargo(String name) {
+    public Cargo retrieveCargo(String name) {
         Cargo Reference = new Cargo();
 
         for (Cargo cargo : cargoList) {
             if (cargo.getName() == name) {
                 Reference = cargo;
+                break;
             }
         }
+
         cargoList.remove(Reference);
         return Reference;
     }

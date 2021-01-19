@@ -101,7 +101,8 @@ public class Train implements Serializable {
         logger.debug("Train "+name+" moved from station "+ previousStation.getName()+" to station " + currentStation.getName() +summaryOnboardObjects());
 
         leaveRailCars();
-        boardTrain();
+        previousStation.leave(this);
+        currentStation.arriveAt(this);
     }
 
     public String summaryOnboardObjects(){
@@ -114,11 +115,6 @@ public class Train implements Serializable {
         }
     }
 
-    void boardTrain() {
-        if ((currentStation instanceof TrainStation)&&(!((TrainStation) currentStation).isStationEmpty())) {
-            ((TrainStation) currentStation).boardTrain(getCurrentStationIterator(),passengerRailCarList);
-        }
-    }
 
     public String listSortedByComfortCarts() {
 
@@ -206,6 +202,12 @@ public class Train implements Serializable {
 
     public Iterator<Station> getCurrentStationIterator(){
         return routeStations.listIterator(routeStations.indexOf(currentStation));
+    }
+
+    public List<RailCar> getRailCarts(){
+        List<RailCar> returnList = new ArrayList<>();
+        returnList.addAll(connectedRailCars);
+        return  returnList;
     }
 
 }
