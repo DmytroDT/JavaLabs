@@ -1,5 +1,6 @@
 package transportSystem.train.railcar;
 
+import org.apache.log4j.Logger;
 import transportSystem.baggage.Cargo;
 import transportSystem.baggage.Passenger;
 import transportSystem.station.Depo;
@@ -12,6 +13,8 @@ import java.io.Serializable;
 import java.util.*;
 
 public class PassengerRailCar extends RailCar implements Comparable<PassengerRailCar> , Serializable {
+
+    final static Logger logger = Logger.getLogger(PassengerRailCar.class);
 
     Map<Integer, Passenger> seatedPassengers = new TreeMap<Integer, Passenger>();
     Map<Passenger, Cargo> loadedLuggage = new HashMap<Passenger, Cargo>();
@@ -81,10 +84,10 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
 
                 passRef=seatedPassengers.get(seat);
 
-                System.out.printf("\nPassenger "+passRef.getName()+
+                logger.info(" Passenger "+passRef.getName()+
                         getLuggageName(passRef)+
-                        " leaves train at "+station.getName()+".");
-                offloadLuggage(passRef);
+                        " leaves train at "+station.getName()+" station.");
+
                 seatedPassengers.remove(seat);
             }
         }

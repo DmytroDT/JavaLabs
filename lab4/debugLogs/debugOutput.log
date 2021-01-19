@@ -1,0 +1,140 @@
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Depo to station Makovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Holovanremaining passengers:1 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Koyotaremaining passengers:2 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station polyanovaremaining passengers:1 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station terminal cargo stationremaining passengers:0 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station terminal cargo station to station polyanovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station Koyotaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station Holovanremaining passengers:2 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Makovaremaining passengers:3 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Deporemaining passengers:0 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Depo to station Makovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Holovanremaining passengers:1 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Koyotaremaining passengers:2 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station polyanovaremaining passengers:1 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station terminal cargo stationremaining passengers:0 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station terminal cargo station to station polyanovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station Koyotaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station Holovanremaining passengers:2 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Makovaremaining passengers:3 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Deporemaining passengers:0 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Depo to station Makovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Holovanremaining passengers:1 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Koyotaremaining passengers:1 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station polyanovaremaining passengers:1 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station terminal cargo stationremaining passengers:0 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station terminal cargo station to station polyanovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station Koyotaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station Holovanremaining passengers:2 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Makovaremaining passengers:2 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Deporemaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Depo to station Makovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Holovanremaining passengers:1 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Koyotaremaining passengers:3 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station polyanovaremaining passengers:2 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station terminal cargo stationremaining passengers:0 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station terminal cargo station to station polyanovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station Koyotaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station Holovanremaining passengers:2 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Makovaremaining passengers:2 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Deporemaining passengers:0 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Depo to station Makovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Holovanremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Koyotaremaining passengers:2 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station polyanovaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station terminal cargo stationremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station terminal cargo station to station polyanovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station Koyotaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station Holovanremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Makovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Deporemaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Depo to station Makovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Holovanremaining passengers:1 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Koyotaremaining passengers:1 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station polyanovaremaining passengers:1 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station terminal cargo stationremaining passengers:0 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station terminal cargo station to station polyanovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station Koyotaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station Holovanremaining passengers:2 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Makovaremaining passengers:2 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Deporemaining passengers:0 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Depo to station Makovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Holovanremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Koyotaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station polyanovaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station terminal cargo stationremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station terminal cargo station to station polyanovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station Koyotaremaining passengers:1 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station Holovanremaining passengers:2 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Makovaremaining passengers:2 ,remaining luggage:3.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Deporemaining passengers:0 ,remaining luggage:3.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Depo to station Makovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Holovanremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Koyotaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station polyanovaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station terminal cargo stationremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station terminal cargo station to station polyanovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station Koyotaremaining passengers:2 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station Holovanremaining passengers:2 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Makovaremaining passengers:1 ,remaining luggage:3.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Deporemaining passengers:0 ,remaining luggage:3.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Depo to station Makovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Holovanremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Koyotaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station polyanovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station terminal cargo stationremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station terminal cargo station to station polyanovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station Koyotaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station Holovanremaining passengers:2 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Makovaremaining passengers:2 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Deporemaining passengers:0 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Depo to station Makovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Holovanremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Koyotaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station polyanovaremaining passengers:1 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station terminal cargo stationremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station terminal cargo station to station polyanovaremaining passengers:0 ,remaining luggage:0.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station polyanova to station Koyotaremaining passengers:1 ,remaining luggage:1.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Koyota to station Holovanremaining passengers:2 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Holovan to station Makovaremaining passengers:1 ,remaining luggage:2.
+2021-01-19 16:09:00 DEBUG Train:101 - Train Train 1 moved from station Makova to station Deporemaining passengers:0 ,remaining luggage:2.
+2021-01-19 16:56:50 ERROR Main:19 - error:
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at menu.MainMenu.commandsLoop(MainMenu.java:64)
+	at menu.MainMenu.<init>(MainMenu.java:51)
+	at Main.main(Main.java:17)
+2021-01-19 16:57:31 ERROR Main:19 - error:
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at menu.MainMenu.commandsLoop(MainMenu.java:64)
+	at menu.MainMenu.<init>(MainMenu.java:51)
+	at Main.main(Main.java:17)
+2021-01-19 16:58:03 ERROR Main:19 - error:
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at menu.MainMenu.commandsLoop(MainMenu.java:64)
+	at menu.MainMenu.<init>(MainMenu.java:51)
+	at Main.main(Main.java:17)
+2021-01-19 16:58:24 ERROR Main:19 - error:
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at menu.MainMenu.commandsLoop(MainMenu.java:64)
+	at menu.MainMenu.<init>(MainMenu.java:51)
+	at Main.main(Main.java:17)
+2021-01-19 17:00:09 ERROR Main:19 - program encountered error:
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at menu.MainMenu.commandsLoop(MainMenu.java:64)
+	at menu.MainMenu.<init>(MainMenu.java:51)
+	at Main.main(Main.java:17)
+2021-01-19 17:22:36 ERROR Main:19 - program encountered error:
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at menu.MainMenu.commandsLoop(MainMenu.java:64)
+	at menu.MainMenu.<init>(MainMenu.java:51)
+	at Main.main(Main.java:17)
+2021-01-19 17:28:28 ERROR Main:19 - program encountered error:
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at menu.MainMenu.commandsLoop(MainMenu.java:64)
+	at menu.MainMenu.<init>(MainMenu.java:51)
+	at Main.main(Main.java:17)
+2021-01-19 17:31:00 ERROR Main:19 - program encountered error:
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at menu.MainMenu.commandsLoop(MainMenu.java:64)
+	at menu.MainMenu.<init>(MainMenu.java:51)
+	at Main.main(Main.java:17)

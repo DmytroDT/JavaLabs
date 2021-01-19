@@ -1,7 +1,6 @@
 package transportSystem.station;
 
 import transportSystem.baggage.Passenger;
-import transportSystem.train.Train;
 import transportSystem.train.railcar.PassengerRailCar;
 
 import java.io.Serializable;

@@ -13,12 +13,12 @@ public class TrainSystemFileManager {
 
     public void saveTrains(List<Train> trains) throws IOException {
 
-        File savedTrains = new File("TrainSaveFile.txt");
+        File savedTrains = new File("./saves/TrainSaveFile.txt");
         savedTrains.createNewFile();
         FileOutputStream trainsFileOutput = new FileOutputStream(savedTrains);
-        ObjectOutputStream trainsObjectoutput = new ObjectOutputStream(trainsFileOutput);
-        trainsObjectoutput.writeObject(trains);
-        trainsObjectoutput.close();
+        ObjectOutputStream trainsObjectOutPut = new ObjectOutputStream(trainsFileOutput);
+        trainsObjectOutPut.writeObject(trains);
+        trainsObjectOutPut.close();
         trainsFileOutput.close();
 
     }
@@ -26,7 +26,7 @@ public class TrainSystemFileManager {
     public List<Train> loadTrains() throws IOException, ClassNotFoundException {
         List<Train> trains;
 
-        FileInputStream trainsFileInput= new FileInputStream("TrainSaveFile.txt");
+        FileInputStream trainsFileInput= new FileInputStream("./saves/TrainSaveFile.txt");
         ObjectInputStream trainsObjectInput = new ObjectInputStream(trainsFileInput);
 
         trains = (ArrayList) trainsObjectInput.readObject();
@@ -42,7 +42,7 @@ public class TrainSystemFileManager {
 
     public void saveRailCars(List<RailCar> railcars) throws IOException {
 
-        File savedRailCars = new File("RailCarsSaveFile.txt");
+        File savedRailCars = new File("./saves/RailCarsSaveFile.txt");
         savedRailCars.createNewFile();
         FileOutputStream RailCarsFileOutput = new FileOutputStream(savedRailCars);
         ObjectOutputStream RailCarsObjectOutPut = new ObjectOutputStream(RailCarsFileOutput);
@@ -53,7 +53,7 @@ public class TrainSystemFileManager {
 
     public List<RailCar> loadRailCars() throws IOException, ClassNotFoundException {
         List<RailCar> railcars;
-        FileInputStream RailCarsFileInput= new FileInputStream("RailCarsSaveFile.txt");
+        FileInputStream RailCarsFileInput= new FileInputStream("./saves/RailCarsSaveFile.txt");
         ObjectInputStream RailCarsObjectInput = new ObjectInputStream(RailCarsFileInput);
 
         railcars = (ArrayList) RailCarsObjectInput.readObject();
@@ -65,19 +65,19 @@ public class TrainSystemFileManager {
 
     public void saveStations(List<Station> stations) throws IOException {
 
-        File savedStations = new File("StationsSaveFile.txt");
+        File savedStations = new File("./saves/StationsSaveFile.txt");
         savedStations.createNewFile();
         FileOutputStream StationsFileOutput = new FileOutputStream(savedStations);
-        ObjectOutputStream StationsObjectoutput = new ObjectOutputStream(StationsFileOutput);
-        StationsObjectoutput.writeObject(stations);
-        StationsObjectoutput.close();
+        ObjectOutputStream StationsObjectOutPut = new ObjectOutputStream(StationsFileOutput);
+        StationsObjectOutPut.writeObject(stations);
+        StationsObjectOutPut.close();
         StationsFileOutput.close();
     }
 
     public List<Station> loadStations() throws IOException, ClassNotFoundException {
 
         List<Station> stations;
-        FileInputStream StationsFileInput= new FileInputStream("StationsSaveFile.txt");
+        FileInputStream StationsFileInput= new FileInputStream("./saves/StationsSaveFile.txt");
         ObjectInputStream StationsObjectInput = new ObjectInputStream(StationsFileInput);
 
         stations = (ArrayList) StationsObjectInput.readObject();

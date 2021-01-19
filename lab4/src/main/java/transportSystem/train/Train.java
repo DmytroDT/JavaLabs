@@ -1,5 +1,7 @@
 package transportSystem.train;
 
+
+import org.apache.log4j.Logger;
 import transportSystem.station.Station;
 import transportSystem.station.TrainStation;
 import transportSystem.train.railcar.CargoRailCar;
@@ -11,6 +13,8 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Train implements Serializable {
+
+    final static Logger logger = Logger.getLogger(Train.class);
 
     String name;
     //TODO: change train collections structure to base + typecast methods
@@ -92,14 +96,16 @@ public class Train implements Serializable {
         }
         currentStation = stationIterator.next();
 
-        System.out.printf("\nTrain "+name+" moved from station "+ previousStation.getName()+" to station " + currentStation.getName() +summaryOnboardObjects());
+        //System.out.printf("\nTrain "+name+" moved from station "+ previousStation.getName()+" to station " + currentStation.getName() +summaryOnboardObjects());
+
+        logger.debug("Train "+name+" moved from station "+ previousStation.getName()+" to station " + currentStation.getName() +summaryOnboardObjects());
 
         leaveRailCars();
         boardTrain();
     }
 
     public String summaryOnboardObjects(){
-        return  "remaining passengers:"+summaryPassengers()+" ,remaining luggage:"+summaryLuggage()+".";
+        return  "remaining passengers: "+summaryPassengers()+",remaining luggage: "+summaryLuggage()+".";
     }
 
     void leaveRailCars() {
