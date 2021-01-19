@@ -88,7 +88,7 @@ public class GlobalTrainSystem {
             luggage=new Cargo(10,10,"steel case");
         }
 
-        return  new Passenger(passengerWeight,passengerFullName,destination,comfortLevel,luggage);
+        return  new Passenger(passengerFullName,passengerWeight,destination,comfortLevel,luggage);
 
 
     }

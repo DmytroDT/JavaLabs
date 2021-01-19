@@ -11,14 +11,12 @@ import java.util.Scanner;
 public class MainMenu {
 
     Scanner sc = new Scanner(System.in);
-    String passedString = "";
-    String[] comStr, chkStr;
     GlobalTrainSystem gb;
-    CommandError commandError = new CommandError();
     Map<String, Command> Menu = new HashMap<String, Command>();
     boolean continueCondition=true;
 
     public MainMenu(GlobalTrainSystem externalReference) throws IOException, ClassNotFoundException {
+
         gb = externalReference;
 
         Menu.put("close",new Close(this));
@@ -53,23 +51,28 @@ public class MainMenu {
 
     void commandsLoop() throws IOException, ClassNotFoundException {
 
+        String passedString = "";
+        CommandError commandError = new CommandError();
+        String[]  chkStr;
+
         while (continueCondition) {
             System.out.printf("\n");
 
             passedString = sc.nextLine();
-            chkStr = passedString.split(" ");
+            passedString.trim();
+            chkStr = passedString.split(" ",2);
 
-            // implement better way of executing 1 word commands / add exception
+            //TODO implement better way of executing 1 word commands / add exception ?
 
-            if (chkStr.length < 2) {
+             if (chkStr.length < 2) {
 
-                Menu.getOrDefault(chkStr[0], commandError).execute("");
+                 Menu.getOrDefault(chkStr[0], commandError).execute("");
 
-            } else {
+             } else {
 
-                comStr = passedString.split(" ", 2);
-                Menu.getOrDefault(comStr[0], commandError).execute(comStr[1]);
-            }
+               Menu.getOrDefault(chkStr[0], commandError).execute(chkStr[1]);
+             }
+
         }
     }
 

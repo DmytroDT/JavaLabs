@@ -6,7 +6,6 @@ import transportSystem.train.railcar.PassengerRailCar;
 
 import java.io.Serializable;
 import java.util.Iterator;
-import java.util.ListIterator;
 
 public class Passenger implements Serializable {
 
@@ -16,14 +15,14 @@ public class Passenger implements Serializable {
     ComfortLevel desiredComfort;
     Cargo luggage = null;
 
-    public Passenger(double weight, String name, Station destination, ComfortLevel desiredComfort) {
+    public Passenger( String name, double weight,Station destination, ComfortLevel desiredComfort) {
         this.weight = weight;
         this.name = name;
         this.destination = destination;
         this.desiredComfort = desiredComfort;
     }
 
-    public Passenger(double weight, String name, Station destination, ComfortLevel desiredComfort, Cargo luggage) {
+    public Passenger( String name, double weight, Station destination, ComfortLevel desiredComfort, Cargo luggage) {
         this.weight = weight;
         this.name = name;
         this.destination = destination;

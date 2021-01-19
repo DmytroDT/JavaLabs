@@ -7,11 +7,9 @@ import org.junit.runner.RunWith;
 
 import static org.mockito.Mockito.*;
 
-import org.mockito.ArgumentMatcher;
-import org.mockito.ArgumentMatchers;
-import org.mockito.junit.*;
 
-import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
+
 import org.mockito.junit.MockitoJUnitRunner;
 
 import transportSystem.baggage.Passenger;
