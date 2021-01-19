@@ -59,6 +59,8 @@ public class MainMenu {
             passedString = sc.nextLine();
             chkStr = passedString.split(" ");
 
+            // implement better way of executing 1 word commands / add exception
+
             if (chkStr.length < 2) {
 
                 Menu.getOrDefault(chkStr[0], commandError).execute("");

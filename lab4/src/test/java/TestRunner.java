@@ -1,6 +1,6 @@
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
-import org.junit.runners.model.TestClass;
+import transportSystem.train.trainTest.TrainTest;
 
 
 public class TestRunner {

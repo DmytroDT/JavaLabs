@@ -37,6 +37,13 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
         this.comfortLevel = comfortLevel;
     }
 
+    public PassengerRailCar(PassengerRailCar refRC) {
+        this.setName(refRC.getName());
+        this.maxSeats = refRC.maxSeats;
+        this.maxLuggage = refRC.maxLuggage;
+        this.comfortLevel = refRC.comfortLevel;
+    }
+
     public void addPassenger(Passenger passenger) {
 
         if (!isOverloaded()) {

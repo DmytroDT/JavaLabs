@@ -8,7 +8,7 @@ import java.util.*;
 public class CargoRailCar extends RailCar implements Serializable {
 
     double maxCapacity;
-    List<Cargo> CargoList = new ArrayList<Cargo>();
+    List<Cargo> cargoList = new ArrayList<Cargo>();
 
     public CargoRailCar() {
         setName("standard cargo railcar");
@@ -17,11 +17,21 @@ public class CargoRailCar extends RailCar implements Serializable {
         this.setCartMaxWeight(120000);
     }
 
+    public CargoRailCar(double maxCapacity, List<Cargo> cargoList) {
+        this.maxCapacity = maxCapacity;
+        this.cargoList = cargoList;
+    }
+
+    public CargoRailCar(CargoRailCar refRC) {
+        this.maxCapacity = refRC.maxCapacity;
+        cargoList.addAll(refRC.cargoList) ;
+    }
+
     Cargo summaryCargo() {
         double summaryVolume = 0;
         double summaryWeight = 0;
 
-        for (Cargo cargo : CargoList) {
+        for (Cargo cargo : cargoList) {
             summaryVolume += cargo.getVolume();
             summaryWeight += cargo.getWeight();
         }
@@ -35,19 +45,19 @@ public class CargoRailCar extends RailCar implements Serializable {
             return false;
         }
 //TODO: Loading existing cargo exception?
-        CargoList.add(cargo);
+        cargoList.add(cargo);
         return true;
     }
 
     Cargo retrieveCargo(String name) {
         Cargo Reference = new Cargo();
 
-        for (Cargo cargo : CargoList) {
+        for (Cargo cargo : cargoList) {
             if (cargo.getName() == name) {
                 Reference = cargo;
             }
         }
-        CargoList.remove(Reference);
+        cargoList.remove(Reference);
         return Reference;
     }
 
@@ -65,7 +75,7 @@ public class CargoRailCar extends RailCar implements Serializable {
     public String toString() {
         return "CargoRailCar{" +
                 "maxCapacity=" + maxCapacity +
-                ", CargoList=" + CargoList +
+                ", CargoList=" + cargoList +
                 ", cartWeight=" + cartWeight +
                 ", cartMaxWeight=" + cartMaxWeight +
                 '}';

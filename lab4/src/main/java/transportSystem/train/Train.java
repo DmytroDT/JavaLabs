@@ -57,7 +57,9 @@ public class Train implements Serializable {
     }
 
     public void connectRailCar(RailCar railCar){
+
         connectedRailCars.add(railCar);
+
         if(!passengerRailCarList.isEmpty()){
             passengerRailCarList.clear();
         }
@@ -95,8 +97,6 @@ public class Train implements Serializable {
             changeDirection();
         }
         currentStation = stationIterator.next();
-
-        //System.out.printf("\nTrain "+name+" moved from station "+ previousStation.getName()+" to station " + currentStation.getName() +summaryOnboardObjects());
 
         logger.debug("Train "+name+" moved from station "+ previousStation.getName()+" to station " + currentStation.getName() +summaryOnboardObjects());
 

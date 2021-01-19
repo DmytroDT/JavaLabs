@@ -173,8 +173,15 @@ public class GlobalTrainSystem {
     }
 
     public void trainAddRailCart(int trainIndex,int cartIndex){
-        trains.get(trainIndex).
-                connectRailCar(railcars.get(cartIndex));
+
+        if(railcars.get(cartIndex) instanceof PassengerRailCar){
+            trains.get(trainIndex).
+                    connectRailCar(new PassengerRailCar((PassengerRailCar)(railcars.get(cartIndex))));
+        }else{
+            trains.get(trainIndex).
+                    connectRailCar(new CargoRailCar((CargoRailCar)(railcars.get(cartIndex))));
+        }
+
     }
 
     public void trainAddStation(int trainIndex,int stationIndex){
