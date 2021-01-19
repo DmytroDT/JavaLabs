@@ -123,6 +123,7 @@ public class Train implements Serializable {
     public String listSortedByComfortCarts() {
 
         Collections.sort(passengerRailCarList);
+        Collections.reverse(passengerRailCarList);
         String output="";
 
         for(PassengerRailCar cart: passengerRailCarList){

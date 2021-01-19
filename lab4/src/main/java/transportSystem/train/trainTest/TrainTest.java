@@ -1,24 +1,19 @@
 package transportSystem.train.trainTest;
 
-import org.junit.Test;
-
 import static org.junit.Assert.*;
-
+import org.junit.Test;
 import org.junit.Before;
+import org.junit.runner.RunWith;
 
 import static org.mockito.Mockito.*;
-
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.junit.*;
 
-import transportSystem.baggage.Cargo;
 import transportSystem.station.*;
 import transportSystem.train.Train;
 import transportSystem.train.railcar.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 

@@ -20,7 +20,7 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
     Map<Passenger, Cargo> loadedLuggage = new HashMap<Passenger, Cargo>();
 
     int maxSeats;
-    double maxLuggage;
+    int maxLuggage;
     ComfortLevel comfortLevel;
 
     public PassengerRailCar() {
@@ -30,7 +30,7 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
         this.comfortLevel = ComfortLevel.TOLERABLE;
     }
 
-    public PassengerRailCar(String name, int maxSeats, double maxBaggage, ComfortLevel comfortLevel) {
+    public PassengerRailCar(String name, int maxSeats, int maxBaggage, ComfortLevel comfortLevel) {
         this.setName(name);
         this.maxSeats = maxSeats;
         this.maxLuggage = maxBaggage;
@@ -55,13 +55,13 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
 
     void placeLuggage(Passenger passenger) {
 
-        if ((passenger.getLuggage() != null) && (loadedLuggage.size() <= maxLuggage)) {
+        if ((passenger.getLuggage() != null) && (loadedLuggage.size() < maxLuggage)) {
             loadedLuggage.put(passenger, passenger.getLuggage());
         }
     }
 
     void seatPassenger(Passenger passenger) {
-        for (int i = 1; i < maxSeats; i++) {
+        for (int i = 1; i <= maxSeats; i++) {
             if (!seatedPassengers.containsKey(i)) {
                 seatedPassengers.put(i, passenger);
                 break;
@@ -72,8 +72,7 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
     public void leaveRailCar(Station station) {
 
         if ((station instanceof Depo) || (station instanceof TerminalCargoStation)) {
-            seatedPassengers.clear();
-            loadedLuggage.clear();
+            getEverythingOff();
         } else {
             offloadPassengers((TrainStation) station);
         }
@@ -95,10 +94,10 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
                         getLuggageName(passRef)+
                         " leaves train at "+station.getName()+" station.");
 
+                offloadLuggage(passRef);
                 seatedPassengers.remove(seat);
             }
         }
-
     }
 
     void offloadLuggage(Passenger passenger) {
@@ -146,7 +145,7 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
 
     @Override
     public boolean isOverloaded() {
-        return seatedPassengers.size() > maxSeats;
+        return !(seatedPassengers.size() < maxSeats);
     }
 
     @Override
