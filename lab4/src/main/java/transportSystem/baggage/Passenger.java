@@ -15,14 +15,14 @@ public class Passenger implements Serializable {
     ComfortLevel desiredComfort;
     Cargo luggage = null;
 
-    public Passenger( String name, double weight,Station destination, ComfortLevel desiredComfort) {
+    public Passenger(String name, double weight, Station destination, ComfortLevel desiredComfort) {
         this.weight = weight;
         this.name = name;
         this.destination = destination;
         this.desiredComfort = desiredComfort;
     }
 
-    public Passenger( String name, double weight, Station destination, ComfortLevel desiredComfort, Cargo luggage) {
+    public Passenger(String name, double weight, Station destination, ComfortLevel desiredComfort, Cargo luggage) {
         this.weight = weight;
         this.name = name;
         this.destination = destination;
@@ -30,25 +30,25 @@ public class Passenger implements Serializable {
         this.luggage = luggage;
     }
 
-     boolean satisfiedWithComfort(PassengerRailCar cart) {
+    boolean satisfiedWithComfort(PassengerRailCar cart) {
         return (this.getDesiredComfort().compareTo(cart.getComfortLevel()) <= 0) && (!cart.isOverloaded());
     }
 
-    boolean comesThroughDestination(Iterator<Station> stationIterator){
+    boolean comesThroughDestination(Iterator<Station> stationIterator) {
         boolean hasDest = false;
 
-        while (stationIterator.hasNext()){
+        while (stationIterator.hasNext()) {
 
-            if(stationIterator.next()==destination){
-                hasDest=true;
+            if (stationIterator.next() == destination) {
+                hasDest = true;
                 break;
             }
         }
         return hasDest;
     }
 
-    public boolean decideToBoard(PassengerRailCar cart,Iterator<Station> stationIterator){
-        return satisfiedWithComfort(cart)&&comesThroughDestination(stationIterator);
+    public boolean decideToBoard(PassengerRailCar cart, Iterator<Station> stationIterator) {
+        return satisfiedWithComfort(cart) && comesThroughDestination(stationIterator);
     }
 
     public Cargo getLuggage() {
@@ -75,12 +75,12 @@ public class Passenger implements Serializable {
     public String toString() {
 
         String holdingLuggage = "";
-        if(luggage!=null){
-            holdingLuggage="with luggage "+luggage.getName();
+        if (luggage != null) {
+            holdingLuggage = "with luggage " + luggage.getName();
         }
 
         return "\nPassenger" + name + ", want to get to " + destination.getName() +
-                " in a railcar of comfort " + desiredComfort  + holdingLuggage ;
+                " in a railcar of comfort " + desiredComfort + holdingLuggage;
     }
 
 }

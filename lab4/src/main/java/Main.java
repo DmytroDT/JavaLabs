@@ -2,7 +2,6 @@ import menu.MainMenu;
 import org.apache.log4j.Logger;
 import transportSystem.GlobalTrainSystem;
 
-
 import java.io.IOException;
 
 public class Main {
@@ -13,10 +12,10 @@ public class Main {
 
         GlobalTrainSystem gb = new GlobalTrainSystem();
 
-        try{
+        try {
             MainMenu menu = new MainMenu(gb);
-        }catch (Exception e){
-            logger.error("program encountered error:",e);
+        } catch (Exception e) {
+            logger.error("program encountered error:", e);
         }
 
     }

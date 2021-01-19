@@ -4,11 +4,11 @@ import menu.MainMenu;
 
 import java.io.IOException;
 
-public class Close extends Command{
+public class Close extends Command {
 
     MainMenu menu;
 
-    public Close(MainMenu menu){
+    public Close(MainMenu menu) {
         this.menu = menu;
     }
 

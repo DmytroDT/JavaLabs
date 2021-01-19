@@ -1,7 +1,5 @@
 package menu.command;
 
-import transportSystem.GlobalTrainSystem;
-
 public class CommandError extends Command {
 
     @Override

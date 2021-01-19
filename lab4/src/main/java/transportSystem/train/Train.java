@@ -56,18 +56,18 @@ public class Train implements Serializable {
         }
     }
 
-    public void connectRailCar(RailCar railCar){
+    public void connectRailCar(RailCar railCar) {
 
         connectedRailCars.add(railCar);
 
-        if(!passengerRailCarList.isEmpty()){
+        if (!passengerRailCarList.isEmpty()) {
             passengerRailCarList.clear();
         }
         selectPassengerRailCars(connectedRailCars);
     }
 
-    public void addStationToRout(Station station){
-        Station endStationRef = routeStations.get(routeStations.size()-1);
+    public void addStationToRout(Station station) {
+        Station endStationRef = routeStations.get(routeStations.size() - 1);
         routeStations.remove(endStationRef);
         routeStations.add(station);
         routeStations.add(endStationRef);
@@ -98,15 +98,15 @@ public class Train implements Serializable {
         }
         currentStation = stationIterator.next();
 
-        logger.debug("Train "+name+" moved from station "+ previousStation.getName()+" to station " + currentStation.getName() +summaryOnboardObjects());
+        logger.debug("Train " + name + " moved from station " + previousStation.getName() + " to station " + currentStation.getName() + summaryOnboardObjects());
 
         leaveRailCars();
         previousStation.leave(this);
         currentStation.arriveAt(this);
     }
 
-    public String summaryOnboardObjects(){
-        return  "remaining passengers: "+summaryPassengers()+",remaining luggage: "+summaryLuggage()+".";
+    public String summaryOnboardObjects() {
+        return "remaining passengers: " + summaryPassengers() + ",remaining luggage: " + summaryLuggage() + ".";
     }
 
     void leaveRailCars() {
@@ -120,43 +120,43 @@ public class Train implements Serializable {
 
         Collections.sort(passengerRailCarList);
         Collections.reverse(passengerRailCarList);
-        String output="";
+        String output = "";
 
-        for(PassengerRailCar cart: passengerRailCarList){
-            output+="\n"+cart.toString();
+        for (PassengerRailCar cart : passengerRailCarList) {
+            output += "\n" + cart.toString();
         }
 
         return output;
     }
 
-    public int summaryPassengers(){
-        int summaryCount=0;
+    public int summaryPassengers() {
+        int summaryCount = 0;
         for (PassengerRailCar cart : passengerRailCarList) {
-            summaryCount+=cart.countPassengers();
+            summaryCount += cart.countPassengers();
         }
         return summaryCount;
     }
 
-    public int summaryLuggage(){
-        int summaryCount=0;
+    public int summaryLuggage() {
+        int summaryCount = 0;
         for (PassengerRailCar cart : passengerRailCarList) {
-            summaryCount+=cart.countLuggage();
+            summaryCount += cart.countLuggage();
         }
         return summaryCount;
     }
 
-    public PassengerRailCar seekCarByPassengerNumbers(int lowerBound,int upperBound){
+    public PassengerRailCar seekCarByPassengerNumbers(int lowerBound, int upperBound) {
         int refCount;
         PassengerRailCar foundRailCar = null;
 
-        for(PassengerRailCar cart:passengerRailCarList){
-                refCount=cart.countPassengers();
-                if((lowerBound<=refCount)&&(refCount<=upperBound)){
-                    foundRailCar= cart;
-                }
+        for (PassengerRailCar cart : passengerRailCarList) {
+            refCount = cart.countPassengers();
+            if ((lowerBound <= refCount) && (refCount <= upperBound)) {
+                foundRailCar = cart;
+            }
         }
 
-        return  foundRailCar;
+        return foundRailCar;
     }
 
     @Override
@@ -189,25 +189,25 @@ public class Train implements Serializable {
         return currentStation;
     }
 
-    public void forceEverybodyOut(){
-        for(PassengerRailCar cart: passengerRailCarList){
+    public void forceEverybodyOut() {
+        for (PassengerRailCar cart : passengerRailCarList) {
             cart.getEverythingOff();
         }
     }
 
-    public void reinitIterator(){
-        stationIterator=routeStations.listIterator();
-        currentStation=stationIterator.next();
+    public void reinitIterator() {
+        stationIterator = routeStations.listIterator();
+        currentStation = stationIterator.next();
     }
 
-    public Iterator<Station> getCurrentStationIterator(){
+    public Iterator<Station> getCurrentStationIterator() {
         return routeStations.listIterator(routeStations.indexOf(currentStation));
     }
 
-    public List<RailCar> getRailCarts(){
+    public List<RailCar> getRailCarts() {
         List<RailCar> returnList = new ArrayList<>();
         returnList.addAll(connectedRailCars);
-        return  returnList;
+        return returnList;
     }
 
 }

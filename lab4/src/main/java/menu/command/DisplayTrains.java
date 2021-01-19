@@ -2,12 +2,12 @@ package menu.command;
 
 import transportSystem.GlobalTrainSystem;
 
-public class DisplayTrains extends Command{
+public class DisplayTrains extends Command {
 
     GlobalTrainSystem gb;
 
-    public  DisplayTrains(GlobalTrainSystem gb){
-        this.gb=gb;
+    public DisplayTrains(GlobalTrainSystem gb) {
+        this.gb = gb;
     }
 
     @Override

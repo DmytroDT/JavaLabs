@@ -26,7 +26,7 @@ public class CargoRailCar extends RailCar implements Serializable {
 
     public CargoRailCar(CargoRailCar refRC) {
         this.maxCapacity = refRC.maxCapacity;
-        cargoList.addAll(refRC.cargoList) ;
+        cargoList.addAll(refRC.cargoList);
     }
 
     Cargo summaryCargo() {

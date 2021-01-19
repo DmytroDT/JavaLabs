@@ -4,12 +4,12 @@ import transportSystem.GlobalTrainSystem;
 
 import java.io.IOException;
 
-public class LoadAll extends Command{
+public class LoadAll extends Command {
 
     GlobalTrainSystem gb;
 
-    public  LoadAll(GlobalTrainSystem gb){
-        this.gb=gb;
+    public LoadAll(GlobalTrainSystem gb) {
+        this.gb = gb;
     }
 
     @Override

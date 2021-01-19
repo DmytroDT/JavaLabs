@@ -1,11 +1,13 @@
 package transportSystem.train.trainTest;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
 import static org.mockito.Mockito.*;
+
 import org.mockito.ArgumentMatchers;
 import org.mockito.junit.*;
 
@@ -136,7 +138,7 @@ public class TrainTest {
 
         ListIterator<Station> refIter = stationsList.listIterator(1);
 
-        assertEquals(refIter.next(),localTrain.getCurrentStationIterator().next());
+        assertEquals(refIter.next(), localTrain.getCurrentStationIterator().next());
 
     }
 
@@ -158,7 +160,7 @@ public class TrainTest {
 
         Train localTrain = new Train("test", railCarList, stationsList, locomotiveMock);
 
-        assertEquals(stationsList.get(0),localTrain.getCurrentStation());
+        assertEquals(stationsList.get(0), localTrain.getCurrentStation());
     }
 
 }

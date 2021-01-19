@@ -8,7 +8,7 @@ public class Cargo implements Serializable {
     String name;
     String deadline;
 
-    public Cargo( ) {
+    public Cargo() {
     }
 
     public Cargo(double volume, double weight, String name, String deadline) {

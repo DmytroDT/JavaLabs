@@ -21,11 +21,11 @@ public class TrainStation extends Station implements Serializable {
         this.setName(name);
     }
 
-    public  void addPassenger(Passenger passenger) {
+    public void addPassenger(Passenger passenger) {
         passengersList.add(passenger);
     }
 
-    public  void addPassengerList( List<Passenger> passengers) {
+    public void addPassengerList(List<Passenger> passengers) {
         passengersList.addAll(passengers);
     }
 
@@ -33,36 +33,36 @@ public class TrainStation extends Station implements Serializable {
 
         List<Passenger> passengersReference = new ArrayList<Passenger>();
 
-            for (Passenger passenger : passengersList) {
-                for (RailCar cart : passengerRailCarList) {
+        for (Passenger passenger : passengersList) {
+            for (RailCar cart : passengerRailCarList) {
 
-                    if(cart instanceof PassengerRailCar){
+                if (cart instanceof PassengerRailCar) {
 
-                   PassengerRailCar passRCRef = (PassengerRailCar) cart;
+                    PassengerRailCar passRCRef = (PassengerRailCar) cart;
 
-                    if(passenger.decideToBoard(passRCRef,CurrStationIter)){
-                            passRCRef.addPassenger(passenger);
-                            passengersReference.add(passenger);
-                            break;
-                        }
+                    if (passenger.decideToBoard(passRCRef, CurrStationIter)) {
+                        passRCRef.addPassenger(passenger);
+                        passengersReference.add(passenger);
+                        break;
                     }
                 }
             }
+        }
 
-            passengersList.removeAll(passengersReference);
+        passengersList.removeAll(passengersReference);
     }
 
-    public boolean isStationEmpty(){
+    public boolean isStationEmpty() {
         return passengersList.isEmpty();
     }
 
-    public int getPassengerCount(){
+    public int getPassengerCount() {
         return passengersList.size();
     }
 
     @Override
     public void arriveAt(Train train) {
-        boardTrain(train.getCurrentStationIterator(),train.getRailCarts());
+        boardTrain(train.getCurrentStationIterator(), train.getRailCarts());
     }
 
     @Override
@@ -73,13 +73,13 @@ public class TrainStation extends Station implements Serializable {
     @Override
     public String toString() {
 
-        String passengersOnStation="";
-        if(!passengersList.isEmpty()){
-            for( Passenger passenger : passengersList){
-                passengersOnStation+=passenger.toString();
+        String passengersOnStation = "";
+        if (!passengersList.isEmpty()) {
+            for (Passenger passenger : passengersList) {
+                passengersOnStation += passenger.toString();
             }
         }
 
-        return "TrainStation " + name +" has awaiting passengers " + passengersOnStation;
+        return "TrainStation " + name + " has awaiting passengers " + passengersOnStation;
     }
 }

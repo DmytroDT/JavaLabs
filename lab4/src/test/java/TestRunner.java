@@ -1,18 +1,31 @@
+import org.apache.log4j.Logger;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+import transportSystem.baggage.baggageTest.PassengerTest;
+import transportSystem.station.stationTest.TrainStationTest;
+import transportSystem.train.railcar.railcarTest.CargoRailCarTest;
+import transportSystem.train.railcar.railcarTest.LocomotiveTest;
+import transportSystem.train.railcar.railcarTest.PassengerRailCarTest;
+import transportSystem.train.trainTest.ComfortLevelTest;
 import transportSystem.train.trainTest.TrainTest;
 
 
 public class TestRunner {
 
-    public static void main(String[] args) {
-        Result res = JUnitCore.runClasses(TrainTest.class);
+    final static Logger logger = Logger.getLogger(TestRunner.class);
 
-        if(res.wasSuccessful()){
-            System.out.printf("Train passed all the tests");
-        }else{
-            System.out.printf("Train failed tests");
+    public static void main(String[] args) {
+        Result res = JUnitCore.runClasses(TrainTest.class, ComfortLevelTest.class,
+                PassengerRailCarTest.class, LocomotiveTest.class, CargoRailCarTest.class,
+                TrainStationTest.class, PassengerTest.class);
+
+        logger.info("Total number of tests: " + res.getRunCount() + "\nNumber of failed ones: " + res.getFailureCount());
+
+        for (Failure failure : res.getFailures()) {
+            logger.info(failure.getMessage());
         }
+
     }
 
 }

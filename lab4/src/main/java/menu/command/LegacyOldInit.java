@@ -4,12 +4,12 @@ import transportSystem.GlobalTrainSystem;
 
 import java.io.IOException;
 
-public class LegacyOldInit extends Command{
+public class LegacyOldInit extends Command {
 
     GlobalTrainSystem gb;
 
-    public  LegacyOldInit(GlobalTrainSystem gb){
-        this.gb=gb;
+    public LegacyOldInit(GlobalTrainSystem gb) {
+        this.gb = gb;
     }
 
     @Override

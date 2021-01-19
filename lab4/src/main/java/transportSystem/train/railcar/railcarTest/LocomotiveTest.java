@@ -1,11 +1,13 @@
 package transportSystem.train.railcar.railcarTest;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
 import static org.mockito.Mockito.*;
+
 import org.mockito.junit.*;
 import transportSystem.train.Train;
 import transportSystem.train.railcar.Locomotive;
@@ -18,14 +20,14 @@ public class LocomotiveTest {
     Train train = mock(Train.class);
 
     @Before
-    public void setup(){
+    public void setup() {
         when(train.getTrainWeight()).thenReturn(5000000.);
     }
 
     @Test
-    public void locomotiveShouldntAbleToPushWhenOverloaded(){
+    public void locomotiveShouldntAbleToPushWhenOverloaded() {
 
-        assertNotEquals(true,locomotive.isAbleToPush(train));
+        assertNotEquals(true, locomotive.isAbleToPush(train));
 
     }
 

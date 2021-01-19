@@ -4,12 +4,12 @@ import transportSystem.GlobalTrainSystem;
 
 import java.io.IOException;
 
-public class SaveAll extends Command{
+public class SaveAll extends Command {
 
     GlobalTrainSystem gb;
 
-    public  SaveAll(GlobalTrainSystem gb){
-        this.gb=gb;
+    public SaveAll(GlobalTrainSystem gb) {
+        this.gb = gb;
     }
 
     @Override

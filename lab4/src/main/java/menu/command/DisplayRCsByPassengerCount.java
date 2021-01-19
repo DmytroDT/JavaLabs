@@ -4,12 +4,12 @@ import transportSystem.GlobalTrainSystem;
 
 import java.io.IOException;
 
-public class DisplayRCsByPassengerCount extends Command{
+public class DisplayRCsByPassengerCount extends Command {
 
     GlobalTrainSystem gb;
 
-    public  DisplayRCsByPassengerCount(GlobalTrainSystem gb){
-        this.gb=gb;
+    public DisplayRCsByPassengerCount(GlobalTrainSystem gb) {
+        this.gb = gb;
     }
 
     @Override
@@ -19,15 +19,15 @@ public class DisplayRCsByPassengerCount extends Command{
         int lowerBound;
         int upperBound;
 
-        if(!checkIncorrectCommand(inputString,3)){
+        if (!checkIncorrectCommand(inputString, 3)) {
 
-             TrainIndex = Integer.parseInt(split(inputString)[0]);
-             lowerBound = Integer.parseInt(split(inputString)[1]);
-             upperBound = Integer.parseInt(split(inputString)[2]);
+            TrainIndex = Integer.parseInt(split(inputString)[0]);
+            lowerBound = Integer.parseInt(split(inputString)[1]);
+            upperBound = Integer.parseInt(split(inputString)[2]);
 
-            System.out.printf(gb.displayRailCarByPassengerCount(TrainIndex,lowerBound,upperBound));
+            System.out.printf(gb.displayRailCarByPassengerCount(TrainIndex, lowerBound, upperBound));
 
-        }else{
+        } else {
             (new CommandError()).execute(inputString);
         }
     }

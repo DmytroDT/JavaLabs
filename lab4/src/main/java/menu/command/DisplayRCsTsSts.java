@@ -2,14 +2,13 @@ package menu.command;
 
 import transportSystem.GlobalTrainSystem;
 
-public class DisplayRCsTsSts extends Command{
+public class DisplayRCsTsSts extends Command {
 
     GlobalTrainSystem gb;
 
-    public DisplayRCsTsSts(GlobalTrainSystem gb){
-        this.gb=gb;
+    public DisplayRCsTsSts(GlobalTrainSystem gb) {
+        this.gb = gb;
     }
-
 
 
     @Override

@@ -2,12 +2,12 @@ package menu.command;
 
 import transportSystem.GlobalTrainSystem;
 
-public class DeleteTrain extends Command{
+public class DeleteTrain extends Command {
 
     GlobalTrainSystem gb;
 
-    public  DeleteTrain(GlobalTrainSystem gb){
-        this.gb=gb;
+    public DeleteTrain(GlobalTrainSystem gb) {
+        this.gb = gb;
     }
 
     @Override
