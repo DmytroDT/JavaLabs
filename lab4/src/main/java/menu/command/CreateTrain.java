@@ -13,11 +13,7 @@ public class CreateTrain extends Command {
     @Override
     public void execute(String inputString) {
 
-        if (!checkIncorrectCommand(inputString, 1)) {
-            gb.createTrain(inputString);
-        } else {
-            (new CommandError()).execute(inputString);
-        }
+        gb.createTrain(inputString);
 
     }
 }

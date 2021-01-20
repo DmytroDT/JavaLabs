@@ -1,6 +1,7 @@
 package menu;
 
 import menu.command.*;
+import org.apache.log4j.Logger;
 import transportSystem.GlobalTrainSystem;
 
 import java.io.IOException;
@@ -9,6 +10,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MainMenu {
+
+    final static Logger logger = Logger.getLogger(MainMenu.class);
 
     Scanner sc = new Scanner(System.in);
     GlobalTrainSystem gb;
@@ -64,13 +67,12 @@ public class MainMenu {
 
             //TODO implement better way of executing 1 word commands / add exception ?
 
-            if (chkStr.length < 2) {
-
-                Menu.getOrDefault(chkStr[0], commandError).execute("");
-
-            } else {
+            if ((chkStr.length >= 2) && (chkStr[1] != "")) {
 
                 Menu.getOrDefault(chkStr[0], commandError).execute(chkStr[1]);
+
+            } else {
+                        Menu.getOrDefault(chkStr[0], commandError).execute("");
             }
 
         }

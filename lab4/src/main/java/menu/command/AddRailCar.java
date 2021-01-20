@@ -14,13 +14,21 @@ public class AddRailCar extends Command {
     public void execute(String inputString) {
 
         String[] operatingStr = split(inputString);
-        int index;
-        int trainIndex = Integer.parseInt(operatingStr[0]);
 
-        for (int i = 1; i < operatingStr.length; i++) {
-            index = Integer.parseInt(operatingStr[i]);
-            gb.trainAddRailCart(trainIndex, index);
+        Integer trainIndex = tryParse(operatingStr[0]);
+        Integer index;
+
+        if (trainIndex == null) {
+            (new CommandError()).execute("");
+        } else {
+
+            for (int i = 1; i < operatingStr.length; i++) {
+                index = tryParse(operatingStr[i]);
+                if (index != null) {
+                    gb.trainAddRailCart(trainIndex, index);
+                }
+            }
         }
-
     }
+
 }

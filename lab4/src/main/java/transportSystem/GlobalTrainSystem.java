@@ -27,8 +27,8 @@ public class GlobalTrainSystem {
     List<Cargo> cargo = new ArrayList<Cargo>();
 
 
-    String[] passengerNames = {"Pavlo", "Dmytro", "Taras", "Bogdan", "Oleg"};
-    String[] passengerSurnames = {" Pavluk", " Dovgal", " Jigal", " Kvas", " ProstoOleg"};
+    String[] passengerNames = {"Pavlo", "Dmytro", "Taras", "Bogdan", "Oleg","Oleksandr","Andriy","Roman"};
+    String[] passengerSurnames = {" Pavluk", " Dovgal", " Jigal", " Kvas", "Ilovaskiy","Lepki","Teodorovych","Antkiv"};
 
     public void oldInit() {
 
@@ -79,7 +79,7 @@ public class GlobalTrainSystem {
 
     Passenger createRandomPassenger(Station destination) {
 
-        String passengerFullName = passengerNames[rnd.nextInt(5)] + passengerSurnames[rnd.nextInt(5)];
+        String passengerFullName = passengerNames[rnd.nextInt(7)] + passengerSurnames[rnd.nextInt(7)];
         ;
         double passengerWeight = randomIntInRange(40, 80);
         ComfortLevel comfortLevel = ComfortLevel.assignComfortLevel(randomIntInRange(1, 100));

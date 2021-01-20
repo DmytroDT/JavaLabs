@@ -15,7 +15,9 @@ public class DisplayRCsByComfort extends Command {
     @Override
     public void execute(String inputString) throws IOException, ClassNotFoundException {
 
-        if (!checkIncorrectCommand(inputString, 1)) {
+        Integer val = tryParse(split(inputString)[0]);
+
+        if (val != null) {
             System.out.printf(gb.displayRailCarsByComfort(Integer.parseInt(split(inputString)[0])));
         } else {
             (new CommandError()).execute(inputString);

@@ -3,6 +3,8 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import transportSystem.baggage.baggageTest.PassengerTest;
+import transportSystem.station.stationTest.DepoTest;
+import transportSystem.station.stationTest.TerminalCargoStationTest;
 import transportSystem.station.stationTest.TrainStationTest;
 import transportSystem.train.railcar.railcarTest.CargoRailCarTest;
 import transportSystem.train.railcar.railcarTest.LocomotiveTest;
@@ -18,7 +20,7 @@ public class TestRunner {
     public static void main(String[] args) {
         Result res = JUnitCore.runClasses(TrainTest.class, ComfortLevelTest.class,
                 PassengerRailCarTest.class, LocomotiveTest.class, CargoRailCarTest.class,
-                TrainStationTest.class, PassengerTest.class);
+                TerminalCargoStationTest.class,TrainStationTest.class, DepoTest.class, PassengerTest.class);
 
         logger.info("Total number of tests: " + res.getRunCount() + "\nNumber of failed ones: " + res.getFailureCount());
 

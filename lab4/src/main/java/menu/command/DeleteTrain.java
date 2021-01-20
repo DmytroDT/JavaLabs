@@ -13,7 +13,9 @@ public class DeleteTrain extends Command {
     @Override
     public void execute(String inputString) {
 
-        if (!checkIncorrectCommand(inputString, 1)) {
+        Integer val = tryParse(split(inputString)[0]);
+
+        if (val != null) {
             gb.disassembleTrain(Integer.parseInt(split(inputString)[0]));
         } else {
             (new CommandError()).execute(inputString);

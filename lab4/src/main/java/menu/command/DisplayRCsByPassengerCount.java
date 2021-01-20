@@ -14,23 +14,25 @@ public class DisplayRCsByPassengerCount extends Command {
 
     @Override
     public void execute(String inputString) throws IOException, ClassNotFoundException {
-
         int TrainIndex;
         int lowerBound;
         int upperBound;
 
-        if (!checkIncorrectCommand(inputString, 3)) {
-
+        try {
             TrainIndex = Integer.parseInt(split(inputString)[0]);
             lowerBound = Integer.parseInt(split(inputString)[1]);
             upperBound = Integer.parseInt(split(inputString)[2]);
 
             System.out.printf(gb.displayRailCarByPassengerCount(TrainIndex, lowerBound, upperBound));
+        } catch (ArrayIndexOutOfBoundsException e) {
 
-        } else {
             (new CommandError()).execute(inputString);
+
+        } catch (NumberFormatException e) {
+
+            (new CommandError()).execute(inputString);
+
         }
     }
-
 
 }
