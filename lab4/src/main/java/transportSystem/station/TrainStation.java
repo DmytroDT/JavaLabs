@@ -29,7 +29,7 @@ public class TrainStation extends Station implements Serializable {
         passengersList.addAll(passengers);
     }
 
-    public void boardTrain(Iterator<Station> CurrStationIter, List<RailCar> passengerRailCarList) {
+    public void boardTrain(List<Station> remainingStations, List<RailCar> passengerRailCarList) {
 
         List<Passenger> passengersReference = new ArrayList<Passenger>();
 
@@ -40,7 +40,7 @@ public class TrainStation extends Station implements Serializable {
 
                     PassengerRailCar passRCRef = (PassengerRailCar) cart;
 
-                    if (passenger.decideToBoard(passRCRef, CurrStationIter)) {
+                    if (passenger.decideToBoard(passRCRef, remainingStations)) {
                         passRCRef.addPassenger(passenger);
                         passengersReference.add(passenger);
                         break;
@@ -62,7 +62,7 @@ public class TrainStation extends Station implements Serializable {
 
     @Override
     public void arriveAt(Train train) {
-        boardTrain(train.getCurrentStationIterator(), train.getRailCarts());
+        boardTrain(train.remainingStationsInRoute(), train.getRailCarts());
     }
 
     @Override

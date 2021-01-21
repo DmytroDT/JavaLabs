@@ -170,7 +170,7 @@ public class GlobalTrainSystem {
 
         trains.add(new Train(name, railCarList, stationList, new Locomotive()));
     }
-
+    //TODO: despite copy constructor, shallow copies are created?
     public void trainAddRailCart(int trainIndex, int cartIndex) {
 
         if (railcars.get(cartIndex) instanceof PassengerRailCar) {

@@ -199,8 +199,10 @@ public class Train implements Serializable {
         currentStation = stationIterator.next();
     }
 
-    public Iterator<Station> getCurrentStationIterator() {
-        return routeStations.listIterator(routeStations.indexOf(currentStation));
+    public List<Station> remainingStationsInRoute() {
+        //TODO: change iterator
+        List<Station> returnList = routeStations.subList(routeStations.indexOf(currentStation),routeStations.size()-1);
+        return returnList;
     }
 
     public List<RailCar> getRailCarts() {

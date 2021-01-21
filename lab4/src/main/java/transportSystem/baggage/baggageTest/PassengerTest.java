@@ -16,7 +16,8 @@ import transportSystem.station.Station;
 import transportSystem.train.ComfortLevel;
 import transportSystem.train.railcar.PassengerRailCar;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PassengerTest {
@@ -26,14 +27,15 @@ public class PassengerTest {
     Station destination = mock(Station.class);
     Station otherStation = mock(Station.class);
 
-    Iterator<Station> stationIterator = mock(Iterator.class);
+    List<Station> remainingStations = new ArrayList<>();
 
     PassengerRailCar railCarMock = mock(PassengerRailCar.class);
 
     @Before
     public void setup(){
 
-    when(stationIterator.hasNext()).thenReturn(true).thenReturn(true).thenReturn(true).thenReturn(false);
+   remainingStations.add(destination);
+   remainingStations.add(otherStation);
 
     }
 
@@ -43,11 +45,10 @@ public class PassengerTest {
         boolean result = false;
         passenger = new Passenger("test passenger",10.,destination, ComfortLevel.COMFORTABLE);
 
-        when(stationIterator.next()).thenReturn(otherStation).thenReturn(otherStation).thenReturn(destination);
 
         when(railCarMock.getComfortLevel()).thenReturn(ComfortLevel.COMFORTABLE);
 
-        result = passenger.decideToBoard(railCarMock,stationIterator);
+        result = passenger.decideToBoard(railCarMock,remainingStations);
 
         assertEquals(result,true);
     }
@@ -56,11 +57,12 @@ public class PassengerTest {
     public void passengerShouldntBoardUncomfortableCart(){
 
         boolean result = true;
+
         passenger = new Passenger("test passenger",10.,destination, ComfortLevel.COMFORTABLE);
 
         when(railCarMock.getComfortLevel()).thenReturn(ComfortLevel.UNCOMFORTABLE);
 
-        result = passenger.decideToBoard(railCarMock,stationIterator);
+        result = passenger.decideToBoard(railCarMock,remainingStations);
 
         assertEquals(result,false);
 
@@ -69,14 +71,14 @@ public class PassengerTest {
     @Test
     public void passengerShouldntBoardTrainWithoutDestinationStation(){
 
+        Station inExistingStation= mock(Station.class);
         boolean result = true;
-        passenger = new Passenger("test passenger",10.,destination, ComfortLevel.COMFORTABLE);
+        passenger = new Passenger("test passenger",10.,inExistingStation, ComfortLevel.COMFORTABLE);
 
-        when(stationIterator.next()).thenReturn(otherStation).thenReturn(otherStation).thenReturn(otherStation);
 
         when(railCarMock.getComfortLevel()).thenReturn(ComfortLevel.COMFORTABLE);
 
-        result = passenger.decideToBoard(railCarMock,stationIterator);
+        result = passenger.decideToBoard(railCarMock,remainingStations);
 
         assertEquals(result,false);
 

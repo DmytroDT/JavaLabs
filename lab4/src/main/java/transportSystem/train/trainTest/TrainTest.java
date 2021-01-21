@@ -126,7 +126,7 @@ public class TrainTest {
     }
 
     @Test
-    public void trainShouldReturnProperStationIterator() {
+    public void trainShouldReturnProperRemainingRoute() {
 
         List<Station> localStationList = new ArrayList<Station>();
 
@@ -134,11 +134,11 @@ public class TrainTest {
 
         Train localTrain = new Train("test", railCarList, localStationList, locomotiveMock);
 
-        moveTrain(localTrain, 1);
+        List<Station> refList = stationsList.subList(1, stationsList.size()-1);
 
-        ListIterator<Station> refIter = stationsList.listIterator(1);
+        train.moveToNextStation();
 
-        assertEquals(refIter.next(), localTrain.getCurrentStationIterator().next());
+        assertEquals(train.remainingStationsInRoute(),refList);
 
     }
 

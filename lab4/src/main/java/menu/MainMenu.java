@@ -65,7 +65,7 @@ public class MainMenu {
             passedString.trim();
             chkStr = passedString.split(" ", 2);
 
-            //TODO implement better way of executing 1 word commands / add exception ?
+            //TODO: IndexOutOfBoundry exception
 
             if ((chkStr.length >= 2) && (chkStr[1] != "")) {
 

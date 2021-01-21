@@ -22,7 +22,7 @@ public class Help extends Command {
                 + "\nsa - save all "
                 + "\nla - load all"
                 + "\nloi - legacy old init"
-                + "\nexit - exit program"
+                + "\nclose - exit program"
         );
     }
 }

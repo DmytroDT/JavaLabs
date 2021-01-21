@@ -50,13 +50,13 @@ public class TrainStationTest {
         railCarList.add(passRC);
         railCarList.add(otherRC);
 
-        when(train.getCurrentStationIterator()).thenReturn(stationIterator);
+        when(train.remainingStationsInRoute()).thenReturn(mock(List.class));
 
         when(train.getRailCarts()).thenReturn(railCarList);
 
         when(pas1.decideToBoard(ArgumentMatchers.<PassengerRailCar>any(),ArgumentMatchers.any())).thenReturn(false);
         when(pas2.decideToBoard(ArgumentMatchers.<PassengerRailCar>any(),ArgumentMatchers.any())).thenReturn(false);
-        when(leavingPass.decideToBoard(((PassengerRailCar)passRC),stationIterator)).thenReturn(true);
+        when(leavingPass.decideToBoard(((PassengerRailCar)passRC),train.remainingStationsInRoute())).thenReturn(true);
     }
 
     @Test
