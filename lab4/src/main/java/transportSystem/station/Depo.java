@@ -27,4 +27,15 @@ public class Depo extends Station implements Serializable {
     public int countTrains(){
         return trainList.size();
     }
+
+    @Override
+    public String toString() {
+        String output="";
+
+        for(Train train: trainList){
+            output+= train.getName()+" ";
+        }
+
+        return "Trains currently at Depo:"+ output;
+    }
 }

@@ -25,7 +25,7 @@ public class AddRailCar extends Command {
             for (int i = 1; i < operatingStr.length; i++) {
                 index = tryParse(operatingStr[i]);
                 if (index != null) {
-                    gb.trainAddRailCart(trainIndex, index);
+                    gb.safeTrainAddRC(trainIndex, index);
                 }
             }
         }

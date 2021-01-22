@@ -1,5 +1,6 @@
 package transportSystem;
 
+import org.apache.log4j.Logger;
 import transportSystem.station.Station;
 import transportSystem.train.Train;
 import transportSystem.train.railcar.RailCar;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class TrainSystemFileManager {
 
+    final static Logger logger = Logger.getLogger(TrainSystemFileManager.class);
 
     public void saveTrains(List<Train> trains) throws IOException {
 
@@ -23,7 +25,7 @@ public class TrainSystemFileManager {
 
     }
 
-    public List<Train> loadTrains() throws IOException, ClassNotFoundException {
+     List<Train> loadTrains() throws IOException, ClassNotFoundException {
         List<Train> trains;
 
         FileInputStream trainsFileInput= new FileInputStream("./saves/TrainSaveFile.txt");
@@ -51,7 +53,7 @@ public class TrainSystemFileManager {
         RailCarsFileOutput.close();
     }
 
-    public List<RailCar> loadRailCars() throws IOException, ClassNotFoundException {
+     List<RailCar> loadRailCars() throws IOException, ClassNotFoundException {
         List<RailCar> railcars;
         FileInputStream RailCarsFileInput= new FileInputStream("./saves/RailCarsSaveFile.txt");
         ObjectInputStream RailCarsObjectInput = new ObjectInputStream(RailCarsFileInput);
@@ -74,7 +76,7 @@ public class TrainSystemFileManager {
         StationsFileOutput.close();
     }
 
-    public List<Station> loadStations() throws IOException, ClassNotFoundException {
+     List<Station> loadStations() throws IOException, ClassNotFoundException {
 
         List<Station> stations;
         FileInputStream StationsFileInput= new FileInputStream("./saves/StationsSaveFile.txt");
@@ -86,6 +88,69 @@ public class TrainSystemFileManager {
 
         return stations;
     }
+
+    public List<Train>  safeLoadTrains(){
+
+        List<Train> trains = new ArrayList<>();
+
+        try{
+            trains = loadTrains();
+
+        }catch (InvalidClassException e){
+                logger.info("Previously saved trains are incompatible with current program version.");
+                logger.error(e.getMessage());
+        }catch (ClassNotFoundException e){
+                logger.info("Previous train save file not found.Create new saves.");
+                logger.error(e.getMessage());
+        }catch (IOException e){
+            logger.info("Loading train save file failed.Please use loi instead or create new structure to save.");
+            logger.error(e.getMessage());
+        }
+
+        return trains;
+    }
+
+    public List<RailCar>   safeLoadRailCars(){
+
+        List<RailCar> railcars = new ArrayList<>();
+
+        try{
+            railcars = loadRailCars();
+
+        }catch (InvalidClassException e){
+            logger.info("Previously saved railcars are incompatible with current program version.");
+            logger.error(e.getMessage());
+        }catch (ClassNotFoundException e){
+            logger.info("Previous railcar save file not found.Create new saves.");
+            logger.error(e.getMessage());
+        }catch (IOException e){
+            logger.info("Loading train save file failed.Please use loi instead or create new structure to save.");
+            logger.error(e.getMessage());
+        }
+
+        return railcars;
+    }
+
+    public List<Station>   safeLoadStations(){
+
+        List<Station> stations = new ArrayList<>();
+
+        try{
+            stations = loadStations();
+        }catch (InvalidClassException e){
+            logger.info("Previously saved stations are incompatible with current program version.");
+            logger.error(e.getMessage());
+        }catch (ClassNotFoundException e){
+            logger.info("Previous stations save file not found.Create new saves.");
+            logger.error(e.getMessage());
+        }catch (IOException e){
+            logger.info("Loading train save file failed.Please use loi instead or create new structure to save.");
+            logger.error(e.getMessage());
+        }
+
+        return stations;
+    }
+
 
 
 }

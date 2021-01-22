@@ -19,13 +19,6 @@ public class GlobalTrainSystemTest {
 
     GlobalTrainSystem gb;
 
-    @Test
-    public void TrainsShouldntHaveCopiedRailcars(){
-        gb=new GlobalTrainSystem();
-        gb.oldInit();
 
-        gb.createTrain("newTr");
-
-    }
 
 }

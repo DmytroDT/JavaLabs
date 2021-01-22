@@ -188,6 +188,10 @@ public class Train implements Serializable {
         return currentStation;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void forceEverybodyOut() {
         for (PassengerRailCar cart : passengerRailCarList) {
             cart.getEverythingOff();

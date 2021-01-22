@@ -16,7 +16,7 @@ public class DeleteTrain extends Command {
         Integer val = tryParse(split(inputString)[0]);
 
         if (val != null) {
-            gb.disassembleTrain(val);
+            gb.safeDisassembleTrain(val);
         } else {
             (new CommandError()).execute(inputString);
         }

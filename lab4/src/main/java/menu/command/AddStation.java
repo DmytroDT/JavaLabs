@@ -25,7 +25,7 @@ public class AddStation extends Command {
             for (int i = 1; i < operatingStr.length; i++) {
                 index = tryParse(operatingStr[i]);
                 if (index != null) {
-                    gb.trainAddStation(trainIndex, index);
+                    gb.safeTrainAddStations(trainIndex, index);
                 }
             }
         }

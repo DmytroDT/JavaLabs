@@ -11,7 +11,7 @@ public class LoadAll extends Command {
     public LoadAll(GlobalTrainSystem gb) {
         this.gb = gb;
     }
-
+//TODO: loading exceptions handling
     @Override
     public void execute(String inputString) throws IOException, ClassNotFoundException {
         gb.loadAll();

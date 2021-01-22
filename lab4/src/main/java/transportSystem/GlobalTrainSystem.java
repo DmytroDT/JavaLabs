@@ -51,17 +51,19 @@ public class GlobalTrainSystem {
         trains.add(new Train("Train 1", cars, route, new Locomotive()));
     }
 
+    //TODO: catch exceptions
     public void saveAll() throws IOException {
         tFManager.saveRailCars(railcars);
         tFManager.saveStations(stations);
         tFManager.saveTrains(trains);
     }
 
-    public void loadAll() throws IOException, ClassNotFoundException {
-        railcars = tFManager.loadRailCars();
-        stations = tFManager.loadStations();
-        trains = tFManager.loadTrains();
+    public void loadAll() {
+        railcars = tFManager.safeLoadRailCars();
+        stations = tFManager.safeLoadStations();
+        trains = tFManager.safeLoadTrains();
     }
+
     //TODO: when 2 depos or TCS are in array, throws exceptions.
     public void fillWithRandomPassengers(int amountOfPassengers) {
 
@@ -174,7 +176,7 @@ public class GlobalTrainSystem {
         trains.add(new Train(name, railCarList, stationList, new Locomotive()));
     }
 
-    public void trainAddRailCart(int trainIndex, int cartIndex) {
+     void trainAddRailCart(int trainIndex, int cartIndex) {
 
         RailCar refRC = railcars.get(cartIndex);
         Train refTrain = trains.get(trainIndex);
@@ -186,16 +188,56 @@ public class GlobalTrainSystem {
         }
     }
 
-    public void trainAddStation(int trainIndex, int stationIndex) {
+     void trainAddStation(int trainIndex, int stationIndex) {
         trains.get(trainIndex).addStationToRout(stations.get(stationIndex));
     }
 
-    public void disassembleTrain(int trainIndex) {
+     void disassembleTrain(int trainIndex) {
         trains.remove(trainIndex);
     }
 
-    public String trainPassLuggCount(int trainIndex) {
+     String trainPassLuggCount(int trainIndex) {
         return trains.get(trainIndex).summaryOnboardObjects();
     }
+
+    public void safeTrainAddRC(int trainIndex, int cartIndex){
+        try{
+            trainAddRailCart(trainIndex,cartIndex);
+        }catch (IndexOutOfBoundsException e){
+            logger.info("Specified index of train / railcar doesn't exist in collection.");
+            logger.error(e.getMessage());
+        }
+    }
+
+    public void safeTrainAddStations(int trainIndex, int stationIndex){
+        try{
+            trainAddStation(trainIndex,stationIndex);
+        }catch(IndexOutOfBoundsException e){
+            logger.info("Specified index of train / station doesn't exist in collection.");
+            logger.error(e.getMessage());
+        }
+    }
+
+    public void safeDisassembleTrain(int trainIndex){
+        try {
+            disassembleTrain(trainIndex);
+        }catch (IndexOutOfBoundsException e){
+            logger.info("Specified by index train doesn't exist.");
+            logger.error(e.getMessage());
+        }
+    }
+
+    public String safeTrainPassLuggCount(int trainIndex){
+        String output ="";
+
+        try {
+            output=  trainPassLuggCount(trainIndex);
+        }catch (IndexOutOfBoundsException e){
+            logger.info("Specified by index train doesn't exist.");
+            logger.error(e.getMessage());
+        }
+        return  output;
+    }
+
 
 }
