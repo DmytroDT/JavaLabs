@@ -24,7 +24,7 @@ public class DisplayRCsByPassengerCount extends Command {
             upperBound = Integer.parseInt(split(inputString)[2]);
 
             System.out.printf(gb.displayRailCarByPassengerCount(TrainIndex, lowerBound, upperBound));
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
 
             (new CommandError()).execute(inputString);
 

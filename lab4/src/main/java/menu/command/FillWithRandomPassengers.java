@@ -16,7 +16,7 @@ public class FillWithRandomPassengers extends Command {
         Integer val = tryParse(split(inputString)[0]);
 
         if (val != null) {
-            gb.fillWithRandomPassengers(Integer.parseInt(split(inputString)[0]));
+            gb.fillWithRandomPassengers(val);
         } else {
             (new CommandError()).execute(inputString);
         }

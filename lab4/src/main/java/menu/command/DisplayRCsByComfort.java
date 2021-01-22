@@ -18,7 +18,7 @@ public class DisplayRCsByComfort extends Command {
         Integer val = tryParse(split(inputString)[0]);
 
         if (val != null) {
-            System.out.printf(gb.displayRailCarsByComfort(Integer.parseInt(split(inputString)[0])));
+            System.out.printf(gb.displayRailCarsByComfort(val));
         } else {
             (new CommandError()).execute(inputString);
         }

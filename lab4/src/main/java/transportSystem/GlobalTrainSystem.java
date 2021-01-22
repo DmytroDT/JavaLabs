@@ -1,5 +1,6 @@
 package transportSystem;
 
+import org.apache.log4j.Logger;
 import transportSystem.baggage.Cargo;
 import transportSystem.baggage.Passenger;
 import transportSystem.station.Depo;
@@ -18,6 +19,8 @@ import java.util.*;
 
 public class GlobalTrainSystem {
 
+    final static Logger logger = Logger.getLogger(GlobalTrainSystem.class);
+
     Random rnd = new Random();
     TrainSystemFileManager tFManager = new TrainSystemFileManager();
 
@@ -28,7 +31,7 @@ public class GlobalTrainSystem {
 
 
     String[] passengerNames = {"Pavlo", "Dmytro", "Taras", "Bogdan", "Oleg","Oleksandr","Andriy","Roman"};
-    String[] passengerSurnames = {" Pavluk", " Dovgal", " Jigal", " Kvas", "Ilovaskiy","Lepki","Teodorovych","Antkiv"};
+    String[] passengerSurnames = {" Pavluk", " Dovgal", " Jigal", " Kvas", " Ilovaskiy"," Lepki"," Teodorovych"," Antkiv"};
 
     public void oldInit() {
 
@@ -59,7 +62,7 @@ public class GlobalTrainSystem {
         stations = tFManager.loadStations();
         trains = tFManager.loadTrains();
     }
-
+    //TODO: when 2 depos or TCS are in array, throws exceptions.
     public void fillWithRandomPassengers(int amountOfPassengers) {
 
         int chosenStation = 0;
@@ -70,7 +73,7 @@ public class GlobalTrainSystem {
                 chosenStation = randomIntInRange(1, stations.size() - 2);
                 chosenDestination = randomIntInRange(1, stations.size() - 2);
 
-            } while (chosenDestination == chosenStation);
+            } while ((chosenDestination == chosenStation));
 
             ((TrainStation) stations.get(chosenStation)).
                     addPassenger(createRandomPassenger((TrainStation) stations.get(chosenDestination)));
@@ -80,7 +83,7 @@ public class GlobalTrainSystem {
     Passenger createRandomPassenger(Station destination) {
 
         String passengerFullName = passengerNames[rnd.nextInt(7)] + passengerSurnames[rnd.nextInt(7)];
-        ;
+
         double passengerWeight = randomIntInRange(40, 80);
         ComfortLevel comfortLevel = ComfortLevel.assignComfortLevel(randomIntInRange(1, 100));
         Cargo luggage = null;
@@ -170,22 +173,21 @@ public class GlobalTrainSystem {
 
         trains.add(new Train(name, railCarList, stationList, new Locomotive()));
     }
-    //TODO: despite copy constructor, shallow copies are created?
+
     public void trainAddRailCart(int trainIndex, int cartIndex) {
 
-        if (railcars.get(cartIndex) instanceof PassengerRailCar) {
-            trains.get(trainIndex).
-                    connectRailCar(new PassengerRailCar((PassengerRailCar) (railcars.get(cartIndex))));
-        } else {
-            trains.get(trainIndex).
-                    connectRailCar(new CargoRailCar((CargoRailCar) (railcars.get(cartIndex))));
-        }
+        RailCar refRC = railcars.get(cartIndex);
+        Train refTrain = trains.get(trainIndex);
 
+        if (refRC instanceof PassengerRailCar) {
+            refTrain.connectRailCar(new PassengerRailCar((PassengerRailCar) refRC));
+        } else {
+            refTrain.connectRailCar(new CargoRailCar((CargoRailCar) refRC));
+        }
     }
 
     public void trainAddStation(int trainIndex, int stationIndex) {
-        trains.get(trainIndex).
-                addStationToRout(stations.get(stationIndex));
+        trains.get(trainIndex).addStationToRout(stations.get(stationIndex));
     }
 
     public void disassembleTrain(int trainIndex) {

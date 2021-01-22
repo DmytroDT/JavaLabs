@@ -29,4 +29,9 @@ public class ComfortLevelTest {
         assertEquals(-1, ComfortLevel.UNCOMFORTABLE.compareTo(ComfortLevel.TOLERABLE));
     }
 
+    @Test
+    public void compareUpperBound() {
+        assertEquals(true,ComfortLevel.TOLERABLE.compareTo(ComfortLevel.HEAVENLY)<0);
+    }
+
 }

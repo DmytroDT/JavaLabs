@@ -2,11 +2,11 @@ package menu.command;
 
 import transportSystem.GlobalTrainSystem;
 
-public class DisplayRCsTsSts extends Command {
+public class DisplayRailCarsTrainsStations extends Command {
 
     GlobalTrainSystem gb;
 
-    public DisplayRCsTsSts(GlobalTrainSystem gb) {
+    public DisplayRailCarsTrainsStations(GlobalTrainSystem gb) {
         this.gb = gb;
     }
 

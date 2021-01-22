@@ -16,7 +16,7 @@ public class PassengersAndLuggageCount extends Command {
         Integer val = tryParse(split(inputString)[0]);
 
         if (val != null) {
-            System.out.printf(gb.trainPassLuggCount(Integer.parseInt(split(inputString)[0])));
+            System.out.printf(gb.trainPassLuggCount(val));
         } else {
             (new CommandError()).execute(inputString);
         }

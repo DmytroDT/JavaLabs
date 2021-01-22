@@ -33,7 +33,7 @@ public class MainMenu {
         Menu.put("ds", new DisplayStations(gb));
         Menu.put("dt", new DisplayTrains(gb));
 
-        Menu.put("drcts", new DisplayRCsTsSts(gb));
+        Menu.put("drcts", new DisplayRailCarsTrainsStations(gb));
         Menu.put("drcbc", new DisplayRCsByComfort(gb));
         Menu.put("drcpc", new DisplayRCsByPassengerCount(gb));
         Menu.put("datp", new DisplayAwaitingTrainPassengers(gb));
