@@ -43,6 +43,9 @@ public class MainMenu {
         Menu.put("fwrp", new FillWithRandomPassengers(gb));
 
         Menu.put("ct", new CreateTrain(gb));
+        Menu.put("cs", new CreateStation(gb));
+        Menu.put("cprc", new CreatePassengerRailCar(gb));
+
         Menu.put("arc", new AddRailCar(gb));
         Menu.put("as", new AddStation(gb));
         Menu.put("deltrn", new DeleteTrain(gb));

@@ -29,6 +29,5 @@ public enum ComfortLevel implements Serializable {
         throw new IllegalArgumentException("Incorrect priority level");
     }
 
-
 }
 

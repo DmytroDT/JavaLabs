@@ -15,7 +15,7 @@ public class AddRailCar extends Command {
 
         String[] operatingStr = split(inputString);
 
-        Integer trainIndex = tryParse(operatingStr[0]);
+        Integer trainIndex = tryParseInt(operatingStr[0]);
         Integer index;
 
         if (trainIndex == null) {
@@ -23,7 +23,7 @@ public class AddRailCar extends Command {
         } else {
 
             for (int i = 1; i < operatingStr.length; i++) {
-                index = tryParse(operatingStr[i]);
+                index = tryParseInt(operatingStr[i]);
                 if (index != null) {
                     gb.safeTrainAddRC(trainIndex, index);
                 }

@@ -15,7 +15,7 @@ public class AddStation extends Command {
 
         String[] operatingStr = split(inputString);
 
-        Integer trainIndex = tryParse(operatingStr[0]);
+        Integer trainIndex = tryParseInt(operatingStr[0]);
         Integer index;
 
         if (trainIndex == null) {
@@ -23,7 +23,7 @@ public class AddStation extends Command {
         } else {
 
             for (int i = 1; i < operatingStr.length; i++) {
-                index = tryParse(operatingStr[i]);
+                index = tryParseInt(operatingStr[i]);
                 if (index != null) {
                     gb.safeTrainAddStations(trainIndex, index);
                 }

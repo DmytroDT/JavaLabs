@@ -37,6 +37,13 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
         this.comfortLevel = comfortLevel;
     }
 
+    public PassengerRailCar(String name, int maxSeats, int maxBaggage, int comfortLevel) {
+        this.setName(name);
+        this.maxSeats = maxSeats;
+        this.maxLuggage = maxBaggage;
+        this.comfortLevel = ComfortLevel.assignComfortLevel(comfortLevel);
+    }
+
     public PassengerRailCar(PassengerRailCar refRC) {
         this.setName(refRC.getName());
         this.maxSeats = refRC.maxSeats;
@@ -162,7 +169,11 @@ public class PassengerRailCar extends RailCar implements Comparable<PassengerRai
         Cargo refLuggage = null;
 
         String outputStr = "RailCar " + getName() + " of comfort level " + comfortLevel.name() + " with max seats " + maxSeats +
-                " can hold luggage " + maxLuggage + " currently has on board:";
+                " can hold luggage " + maxLuggage;
+
+        if(!seatedPassengers.isEmpty()){
+            outputStr+=" currently has on board:";
+        }
 
         for (Integer seat : new ArrayList<Integer>(seatedPassengers.keySet())) {
             outputStr += "\n" + seat + " " + seatedPassengers.get(seat).getName() +

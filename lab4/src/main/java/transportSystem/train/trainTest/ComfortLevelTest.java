@@ -34,4 +34,9 @@ public class ComfortLevelTest {
         assertEquals(true,ComfortLevel.TOLERABLE.compareTo(ComfortLevel.HEAVENLY)<0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void trowsIllegalArgumentIfOutOfBounds() {
+        ComfortLevel comf = ComfortLevel.assignComfortLevel(150);
+    }
+
 }

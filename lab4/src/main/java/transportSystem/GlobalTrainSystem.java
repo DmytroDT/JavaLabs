@@ -33,6 +33,11 @@ public class GlobalTrainSystem {
     String[] passengerNames = {"Pavlo", "Dmytro", "Taras", "Bogdan", "Oleg","Oleksandr","Andriy","Roman"};
     String[] passengerSurnames = {" Pavluk", " Dovgal", " Jigal", " Kvas", " Ilovaskiy"," Lepki"," Teodorovych"," Antkiv"};
 
+    public GlobalTrainSystem(){
+        stations.add(new Depo());
+        stations.add(new TerminalCargoStation());
+    }
+
     public void oldInit() {
 
         stations.add(new Depo());
@@ -49,6 +54,23 @@ public class GlobalTrainSystem {
         List<Station> route = Arrays.asList(stations.get(0), stations.get(1), stations.get(2), stations.get(3), stations.get(4), stations.get(5));
         List<RailCar> cars = Arrays.asList(railcars.get(0), railcars.get(1), railcars.get(2));
         trains.add(new Train("Train 1", cars, route, new Locomotive()));
+    }
+
+    public void safeCreateNewPassengerRailCar(String name, int maxSeats, int maxBaggage, int comfortLevel){
+       try {
+           railcars.add(new PassengerRailCar(name,maxSeats,maxBaggage,comfortLevel) );
+       }catch (IllegalArgumentException e){
+           logger.info("Specified comfort level is out of bound.Please, set comfort level between 0 and 100.");
+           logger.error(e.getMessage());
+       }
+
+    }
+
+    public void createNewStation(String stationName){
+        Station endStation = stations.get(stations.size()-1);
+        stations.remove(endStation);
+        stations.add(new TrainStation(stationName));
+        stations.add(endStation);
     }
 
     //TODO: catch exceptions
@@ -238,6 +260,5 @@ public class GlobalTrainSystem {
         }
         return  output;
     }
-
 
 }

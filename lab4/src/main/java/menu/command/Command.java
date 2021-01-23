@@ -10,7 +10,7 @@ public abstract class Command {
         return splittedString.length != argumentsCount;
     }
 
-    protected Integer tryParse(String input) {
+    protected Integer tryParseInt(String input) {
         Integer retInt=0;
         input.trim();
 

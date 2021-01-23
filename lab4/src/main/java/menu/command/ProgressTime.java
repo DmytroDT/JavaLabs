@@ -13,7 +13,7 @@ public class ProgressTime extends Command {
     @Override
     public void execute(String inputString) {
 
-        Integer val = tryParse(split(inputString)[0]);
+        Integer val = tryParseInt(split(inputString)[0]);
 
         if (val != null) {
 
