@@ -71,7 +71,7 @@ public class Passenger implements Serializable {
             holdingLuggage = "with luggage " + luggage.getName();
         }
 
-        return "\nPassenger" + name + ", want to get to " + destination.getName() +
+        return "\nPassenger " + name + ", want to get to " + destination.getName() +
                 " in a railcar of comfort " + desiredComfort + holdingLuggage;
     }
 

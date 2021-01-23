@@ -86,7 +86,7 @@ public class Train implements Serializable {
         Collections.reverse(routeStations);
         reinitIterator();
     }
-
+    // TODO: check thoroughly
     public void moveToNextStation() {
         Station previousStation = currentStation;
 
@@ -95,13 +95,15 @@ public class Train implements Serializable {
         if (!stationIterator.hasNext()) {
             changeDirection();
         }
-        currentStation = stationIterator.next();
 
-        logger.debug("Train " + name + " moved from station " + previousStation.getName() + " to station " + currentStation.getName() + summaryOnboardObjects());
+        currentStation = stationIterator.next();
 
         leaveRailCars();
         previousStation.leave(this);
         currentStation.arriveAt(this);
+
+        logger.debug("Train " + name + " moved from station " + previousStation.getName() + " to station " + currentStation.getName() + summaryOnboardObjects());
+
     }
 
     public String summaryOnboardObjects() {
@@ -213,6 +215,23 @@ public class Train implements Serializable {
         List<RailCar> returnList = new ArrayList<>();
         returnList.addAll(connectedRailCars);
         return returnList;
+    }
+
+    public void clearRoute(){
+        routeStations.clear();
+    }
+
+    public List<String> stationNames(){
+        List<String> names = new ArrayList<String>();
+
+        for(Station station:routeStations){
+            names.add(station.getName());
+        }
+        return names;
+    }
+
+    public List<Station> getStations( ){
+        return routeStations;
     }
 
 }

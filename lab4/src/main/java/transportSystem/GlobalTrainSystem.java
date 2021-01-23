@@ -40,6 +40,13 @@ public class GlobalTrainSystem {
 
     public void oldInit() {
 
+        List<Station> route = new ArrayList<>();
+        List<RailCar> cars = new ArrayList<>();
+
+        stations.clear();
+        railcars.clear();
+        trains.clear();
+
         stations.add(new Depo());
         stations.add(new TrainStation("Makova"));
         stations.add(new TrainStation("Holovan"));
@@ -49,11 +56,13 @@ public class GlobalTrainSystem {
 
         railcars.add(new PassengerRailCar("Kupe", 40, 40, ComfortLevel.UNCOMFORTABLE));
         railcars.add(new PassengerRailCar());
-        railcars.add(new PassengerRailCar("lux", 5, 10, ComfortLevel.HEAVENLY));
+        railcars.add(new PassengerRailCar("Lux", 5, 10, ComfortLevel.HEAVENLY));
 
-        List<Station> route = Arrays.asList(stations.get(0), stations.get(1), stations.get(2), stations.get(3), stations.get(4), stations.get(5));
-        List<RailCar> cars = Arrays.asList(railcars.get(0), railcars.get(1), railcars.get(2));
-        trains.add(new Train("Train 1", cars, route, new Locomotive()));
+        route.addAll(stations);
+        trains.add(new Train("default train", cars, route, new Locomotive()));
+        trainAddRailCart(0,0);
+        trainAddRailCart(0,1);
+        trainAddRailCart(0,2);
     }
 
     public void safeCreateNewPassengerRailCar(String name, int maxSeats, int maxBaggage, int comfortLevel){
@@ -81,10 +90,15 @@ public class GlobalTrainSystem {
     }
 
     public void loadAll() {
-        railcars = tFManager.safeLoadRailCars();
-        stations = tFManager.safeLoadStations();
-        trains = tFManager.safeLoadTrains();
+      //  railcars = tFManager.safeLoadRailCars();
+        loadStationsAndTrains();
     }
+
+    void loadStationsAndTrains(){
+        stations = tFManager.safeLoadStations();
+        trains = tFManager.completeLoadTrains(stations);
+    }
+
 
     //TODO: when 2 depos or TCS are in array, throws exceptions.
     public void fillWithRandomPassengers(int amountOfPassengers) {
@@ -94,14 +108,22 @@ public class GlobalTrainSystem {
 
         for (int i = 0; i < amountOfPassengers; i++) {
             do {
-                chosenStation = randomIntInRange(1, stations.size() - 2);
-                chosenDestination = randomIntInRange(1, stations.size() - 2);
+                chosenStation = rnd.nextInt(stations.size() - 1);
+                chosenDestination = rnd.nextInt(stations.size() - 1);
 
-            } while ((chosenDestination == chosenStation));
+            } while (matchingStationsCondition(stations.get(chosenStation),stations.get(chosenDestination)));
 
             ((TrainStation) stations.get(chosenStation)).
                     addPassenger(createRandomPassenger((TrainStation) stations.get(chosenDestination)));
         }
+    }
+
+    boolean instanceOfTerminalStations(Station station){
+        return ((station instanceof Depo)||(station instanceof TerminalCargoStation));
+    }
+
+    boolean matchingStationsCondition(Station station1,Station station2){
+        return ((station1.equals(station2))||(instanceOfTerminalStations(station1))||instanceOfTerminalStations(station2));
     }
 
     Passenger createRandomPassenger(Station destination) {
@@ -129,6 +151,11 @@ public class GlobalTrainSystem {
         for (int i = 0; i < amountOfHours; i++) {
             for (Train train : trains) {
                 train.moveToNextStation();
+                if(stations.contains(train.getCurrentStation())){
+                    logger.info("everything's ok.");
+                }else{
+                    logger.info("Mismatch");
+                }
             }
         }
     }
@@ -192,8 +219,8 @@ public class GlobalTrainSystem {
     public void createTrain(String name) {
         List<Station> stationList = new ArrayList<Station>();
         List<RailCar> railCarList = new ArrayList<RailCar>();
-        stationList.add(new Depo());
-        stationList.add(new TerminalCargoStation());
+        stationList.add(stations.get(0));
+        stationList.add(stations.get(stations.size()-1));
 
         trains.add(new Train(name, railCarList, stationList, new Locomotive()));
     }

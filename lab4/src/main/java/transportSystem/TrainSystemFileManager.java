@@ -7,7 +7,9 @@ import transportSystem.train.railcar.RailCar;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TrainSystemFileManager {
 
@@ -25,17 +27,17 @@ public class TrainSystemFileManager {
 
     }
 
-     List<Train> loadTrains() throws IOException, ClassNotFoundException {
+    List<Train> loadTrains() throws IOException, ClassNotFoundException {
         List<Train> trains;
 
-        FileInputStream trainsFileInput= new FileInputStream("./saves/TrainSaveFile.txt");
+        FileInputStream trainsFileInput = new FileInputStream("./saves/TrainSaveFile.txt");
         ObjectInputStream trainsObjectInput = new ObjectInputStream(trainsFileInput);
 
         trains = (ArrayList) trainsObjectInput.readObject();
         trainsObjectInput.close();
         trainsFileInput.close();
 
-        for(Train train : trains){
+        for (Train train : trains) {
             train.reinitIterator();
         }
         return trains;
@@ -53,9 +55,9 @@ public class TrainSystemFileManager {
         RailCarsFileOutput.close();
     }
 
-     List<RailCar> loadRailCars() throws IOException, ClassNotFoundException {
+    List<RailCar> loadRailCars() throws IOException, ClassNotFoundException {
         List<RailCar> railcars;
-        FileInputStream RailCarsFileInput= new FileInputStream("./saves/RailCarsSaveFile.txt");
+        FileInputStream RailCarsFileInput = new FileInputStream("./saves/RailCarsSaveFile.txt");
         ObjectInputStream RailCarsObjectInput = new ObjectInputStream(RailCarsFileInput);
 
         railcars = (ArrayList) RailCarsObjectInput.readObject();
@@ -76,10 +78,10 @@ public class TrainSystemFileManager {
         StationsFileOutput.close();
     }
 
-     List<Station> loadStations() throws IOException, ClassNotFoundException {
+    List<Station> loadStations() throws IOException, ClassNotFoundException {
 
         List<Station> stations;
-        FileInputStream StationsFileInput= new FileInputStream("./saves/StationsSaveFile.txt");
+        FileInputStream StationsFileInput = new FileInputStream("./saves/StationsSaveFile.txt");
         ObjectInputStream StationsObjectInput = new ObjectInputStream(StationsFileInput);
 
         stations = (ArrayList) StationsObjectInput.readObject();
@@ -89,41 +91,20 @@ public class TrainSystemFileManager {
         return stations;
     }
 
-    public List<Train>  safeLoadTrains(){
-
-        List<Train> trains = new ArrayList<>();
-
-        try{
-            trains = loadTrains();
-
-        }catch (InvalidClassException e){
-                logger.info("Previously saved trains are incompatible with current program version.");
-                logger.error(e.getMessage());
-        }catch (ClassNotFoundException e){
-                logger.info("Previous train save file not found.Create new saves.");
-                logger.error(e.getMessage());
-        }catch (IOException e){
-            logger.info("Loading train save file failed.Please use loi instead or create new structure to save.");
-            logger.error(e.getMessage());
-        }
-
-        return trains;
-    }
-
-    public List<RailCar>   safeLoadRailCars(){
+    public List<RailCar> safeLoadRailCars() {
 
         List<RailCar> railcars = new ArrayList<>();
 
-        try{
+        try {
             railcars = loadRailCars();
 
-        }catch (InvalidClassException e){
+        } catch (InvalidClassException e) {
             logger.info("Previously saved railcars are incompatible with current program version.");
             logger.error(e.getMessage());
-        }catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             logger.info("Previous railcar save file not found.Create new saves.");
             logger.error(e.getMessage());
-        }catch (IOException e){
+        } catch (IOException e) {
             logger.info("Loading train save file failed.Please use loi instead or create new structure to save.");
             logger.error(e.getMessage());
         }
@@ -131,19 +112,20 @@ public class TrainSystemFileManager {
         return railcars;
     }
 
-    public List<Station>   safeLoadStations(){
+
+    public List<Station> safeLoadStations() {
 
         List<Station> stations = new ArrayList<>();
 
-        try{
+        try {
             stations = loadStations();
-        }catch (InvalidClassException e){
+        } catch (InvalidClassException e) {
             logger.info("Previously saved stations are incompatible with current program version.");
             logger.error(e.getMessage());
-        }catch (ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             logger.info("Previous stations save file not found.Create new saves.");
             logger.error(e.getMessage());
-        }catch (IOException e){
+        } catch (IOException e) {
             logger.info("Loading train save file failed.Please use loi instead or create new structure to save.");
             logger.error(e.getMessage());
         }
@@ -151,6 +133,56 @@ public class TrainSystemFileManager {
         return stations;
     }
 
+
+     List<Train> safeLoadTrains() {
+
+        List<Train> trains = new ArrayList<>();
+
+        try {
+            trains = loadTrains();
+
+        } catch (InvalidClassException e) {
+            logger.info("Previously saved trains are incompatible with current program version.");
+            logger.error(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            logger.info("Previous train save file not found.Create new saves.");
+            logger.error(e.getMessage());
+        } catch (IOException e) {
+            logger.info("Loading train save file failed.Please use loi instead or create new structure to save.");
+            logger.error(e.getMessage());
+        }
+
+        return trains;
+    }
+//TODO: figure out how to properly load them
+    public List<Train> completeLoadTrains(List<Station> outsideStations){
+
+        List<Train> returningTrains = safeLoadTrains();
+        List<String> stationNames= new ArrayList<String>();
+
+        Map<String,Station> stationReferences = new HashMap<String,Station>();
+
+        for(Station station: outsideStations) {
+            stationReferences.put(station.getName(),station);
+        }
+
+        for(Train train:returningTrains){
+
+            for(Station station:train.getStations()){
+                stationNames.add(station.getName());
+            }
+
+            train.clearRoute();
+
+            for(String name:stationNames){
+                train.addStationToRout(stationReferences.get(name));
+            }
+
+            stationNames.clear();
+        }
+
+        return returningTrains;
+    }
 
 
 }
