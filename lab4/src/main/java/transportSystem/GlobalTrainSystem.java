@@ -151,11 +151,6 @@ public class GlobalTrainSystem {
         for (int i = 0; i < amountOfHours; i++) {
             for (Train train : trains) {
                 train.moveToNextStation();
-                if(stations.contains(train.getCurrentStation())){
-                    logger.info("everything's ok.");
-                }else{
-                    logger.info("Mismatch");
-                }
             }
         }
     }
@@ -238,7 +233,7 @@ public class GlobalTrainSystem {
     }
 
      void trainAddStation(int trainIndex, int stationIndex) {
-        trains.get(trainIndex).addStationToRout(stations.get(stationIndex));
+        trains.get(trainIndex).addStationToRoutBetweenEndpoints(stations.get(stationIndex));
     }
 
      void disassembleTrain(int trainIndex) {

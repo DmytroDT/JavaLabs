@@ -22,6 +22,7 @@ public class TrainSystemFileManager {
         FileOutputStream trainsFileOutput = new FileOutputStream(savedTrains);
         ObjectOutputStream trainsObjectOutPut = new ObjectOutputStream(trainsFileOutput);
         trainsObjectOutPut.writeObject(trains);
+
         trainsObjectOutPut.close();
         trainsFileOutput.close();
 
@@ -134,7 +135,7 @@ public class TrainSystemFileManager {
     }
 
 
-     List<Train> safeLoadTrains() {
+    List<Train> safeLoadTrains() {
 
         List<Train> trains = new ArrayList<>();
 
@@ -154,27 +155,28 @@ public class TrainSystemFileManager {
 
         return trains;
     }
-//TODO: figure out how to properly load them
-    public List<Train> completeLoadTrains(List<Station> outsideStations){
+
+    //TODO: figure out how to properly load them
+    public List<Train> completeLoadTrains(List<Station> outsideStations) {
 
         List<Train> returningTrains = safeLoadTrains();
-        List<String> stationNames= new ArrayList<String>();
+        List<String> stationNames = new ArrayList<String>();
 
-        Map<String,Station> stationReferences = new HashMap<String,Station>();
+        Map<String, Station> stationReferences = new HashMap<String, Station>();
 
-        for(Station station: outsideStations) {
-            stationReferences.put(station.getName(),station);
+        for (Station station : outsideStations) {
+            stationReferences.put(station.getName(), station);
         }
 
-        for(Train train:returningTrains){
+        for (Train train : returningTrains) {
 
-            for(Station station:train.getStations()){
+            for (Station station : train.getStations()) {
                 stationNames.add(station.getName());
             }
 
             train.clearRoute();
 
-            for(String name:stationNames){
+            for (String name : stationNames) {
                 train.addStationToRout(stationReferences.get(name));
             }
 

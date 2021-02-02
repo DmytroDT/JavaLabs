@@ -65,11 +65,16 @@ public class Train implements Serializable {
         selectPassengerRailCars(connectedRailCars);
     }
 
-    public void addStationToRout(Station station) {
+    public void addStationToRoutBetweenEndpoints(Station station) {
         Station endStationRef = routeStations.get(routeStations.size() - 1);
         routeStations.remove(endStationRef);
         routeStations.add(station);
         routeStations.add(endStationRef);
+        reinitIterator();
+    }
+
+    public void addStationToRout(Station station){
+        routeStations.add(station);
         reinitIterator();
     }
 

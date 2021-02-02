@@ -17,7 +17,6 @@ import transportSystem.train.railcar.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TrainTest {
@@ -66,9 +65,22 @@ public class TrainTest {
     @Test
     public void trainShouldFindCorrespondingPassengerCountRailCar() {
 
-        when(((PassengerRailCar) railCarMock).countPassengers()).thenReturn(15).thenReturn(20).thenReturn(30);
+        List<RailCar> loclRailCarList = new ArrayList<>();
+        RailCar rc1 = mock(PassengerRailCar.class);
+        RailCar rc2 = mock(PassengerRailCar.class);
+        RailCar rc3 = mock(PassengerRailCar.class);
 
-        assertEquals(railCarList.get(1), train.seekCarByPassengerNumbers(16, 25));
+        loclRailCarList.add(rc1);
+        loclRailCarList.add(rc2);
+        loclRailCarList.add(rc3);
+
+        when( ((PassengerRailCar)rc1).countPassengers()).thenReturn(14);
+        when( ((PassengerRailCar)rc2).countPassengers()).thenReturn(21);
+        when( ((PassengerRailCar)rc3).countPassengers()).thenReturn(56);
+
+        Train testTrain = new Train("sos",loclRailCarList,stationsList,locomotiveMock);
+
+        assertEquals(loclRailCarList.get(1), testTrain.seekCarByPassengerNumbers(16, 25));
     }
 
     @Test
@@ -105,7 +117,7 @@ public class TrainTest {
 
         Train localTrain = new Train("test", railCarList, localStationList, locomotiveMock);
 
-        localTrain.addStationToRout(newStationMock);
+        localTrain.addStationToRoutBetweenEndpoints(newStationMock);
 
         assertEquals(stationsList.get(2), localStationList.get(3));
     }
