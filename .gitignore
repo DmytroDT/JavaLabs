@@ -2,8 +2,13 @@
 **/.idea/
 **/.metadata/
 **/.recommenders/
+**/doc/
+**/maven-status/
+**/surefire-reports/
+**/debugLogs/
+
 *.class
 *.classpath
 *.project
 *.iml
-**/doc/
+*.log
